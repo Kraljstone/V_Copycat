@@ -9,5 +9,5 @@ import { HttpExceptionFilter } from './common/middleware/error.middleware';
   app.setGlobalPrefix('api/v1');
   app.useGlobalFilters(new HttpExceptionFilter());
 
-  await app.listen(4000);
+  await app.listen(5000);
 })();

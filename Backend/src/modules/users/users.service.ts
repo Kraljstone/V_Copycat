@@ -1,25 +1,46 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
+import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { IUsersService } from './users';
+import { CreateUserParams, IUsersService } from './users';
 import { User } from './entities/user.entity';
-import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-
+import * as bcrypt from 'bcrypt';
+import { Inject } from '@nestjs/common';
+import { Services } from '../../utils/constants';
 @Injectable()
 export class UsersService implements IUsersService {
+  private readonly logger = new Logger(UsersService.name);
+
   constructor(
-    @InjectRepository(User)
-    private userRepository: Repository<User>,
+    @Inject(Services.USERS_REPOSITORY)
+    private readonly userRepository: Repository<User>,
   ) {}
 
-  async create(createUserDto: CreateUserDto) {
-    const user = this.userRepository.create(createUserDto);
-    return this.userRepository.save(user);
+  async createUser(userDetails: CreateUserParams) {
+    try {
+      const hashedPassword = await bcrypt.hash(userDetails.password, 10);
+      const user = this.userRepository.create({
+        ...userDetails,
+        hashPassword: hashedPassword,
+        username: userDetails.phoneNumber,
+        createdAt: new Date(),
+      });
+      const savedUser = await this.userRepository.save(user);
+      this.logger.log(`User saved successfully: ${JSON.stringify(savedUser)}`);
+      return savedUser;
+    } catch (error) {
+      this.logger.error(`Error creating user: ${error.message}`, error.stack);
+      throw error;
+    }
   }
 
   async findAll() {
-    return this.userRepository.find();
+    try {
+      const users = await this.userRepository.find();
+      return users;
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      throw error;
+    }
   }
 
   async findOne(id: number) {

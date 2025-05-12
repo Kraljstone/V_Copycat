@@ -4,6 +4,7 @@ export enum Routes {
 
 export enum Services {
   USERS = 'USERS_SERVICE',
+  USERS_REPOSITORY = 'USERS_REPOSITORY',
 }
 
 export enum Tables {

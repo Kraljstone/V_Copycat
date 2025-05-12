@@ -1,9 +1,14 @@
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 
+export interface CreateUserParams {
+  fullname: string;
+  phoneNumber: string;
+  password: string;
+}
+
 export interface IUsersService {
-  create(createUserDto: CreateUserDto): Promise<User>;
+  createUser(userDetails: CreateUserParams): Promise<User>;
   findAll(): Promise<User[]>;
   findOne(id: number): Promise<User>;
   update(id: number, updateUserDto: UpdateUserDto): Promise<User>;
