@@ -2,8 +2,9 @@ import { Module } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { Services } from '../../utils/constants';
-import { userProviders } from './user.providers';
 import { DatabaseModule } from '../database/database.module';
+import { createRepositoryProvider } from 'src/utils/generic-providers';
+import { User } from './entities/user.entity';
 
 @Module({
   imports: [DatabaseModule],
@@ -13,7 +14,7 @@ import { DatabaseModule } from '../database/database.module';
       provide: Services.USERS,
       useClass: UsersService,
     },
-    ...userProviders,
+    createRepositoryProvider<User>(User, Services.USERS_REPOSITORY),
   ],
 })
 export class UsersModule {}

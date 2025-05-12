@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
-import { Expose, Exclude } from 'class-transformer';
-@Entity('users')
+import { Exclude, Expose } from 'class-transformer';
+import { Tables } from 'src/utils/constants';
+@Entity(Tables.USERS)
 export class User {
   @PrimaryGeneratedColumn({ type: 'int', name: 'user_id' })
   @Expose()

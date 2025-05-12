@@ -1,5 +1,4 @@
-import { Injectable, NotFoundException, Logger } from '@nestjs/common';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { Injectable, Logger, ConflictException } from '@nestjs/common';
 import { CreateUserParams, IUsersService } from './users';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
@@ -17,6 +16,15 @@ export class UsersService implements IUsersService {
 
   async createUser(userDetails: CreateUserParams) {
     try {
+      // Check if user with this phone number already exists
+      const existingUser = await this.userRepository.findOne({
+        where: { phoneNumber: userDetails.phoneNumber },
+      });
+
+      if (existingUser) {
+        throw new ConflictException('A user with this phone number already exists');
+      }
+
       const hashedPassword = await bcrypt.hash(userDetails.password, 10);
       const user = this.userRepository.create({
         ...userDetails,
@@ -25,42 +33,13 @@ export class UsersService implements IUsersService {
         createdAt: new Date(),
       });
       const savedUser = await this.userRepository.save(user);
-      this.logger.log(`User saved successfully: ${JSON.stringify(savedUser)}`);
       return savedUser;
     } catch (error) {
       this.logger.error(`Error creating user: ${error.message}`, error.stack);
-      throw error;
+      if (error instanceof ConflictException) {
+        throw error;
+      }
+      throw new ConflictException('A user with this phone number already exists');
     }
-  }
-
-  async findAll() {
-    try {
-      const users = await this.userRepository.find();
-      return users;
-    } catch (error) {
-      console.error('Error fetching users:', error);
-      throw error;
-    }
-  }
-
-  async findOne(id: number) {
-    const user = await this.userRepository.findOneBy({ userId: id });
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
-    return user;
-  }
-
-  async update(id: number, updateUserDto: UpdateUserDto) {
-    const user = await this.userRepository.findOneBy({ userId: id });
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
-    Object.assign(user, updateUserDto);
-    return this.userRepository.save(user);
-  }
-
-  async remove(id: number) {
-    await this.userRepository.delete(id);
   }
 }

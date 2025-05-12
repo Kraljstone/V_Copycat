@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import { Database } from 'src/utils/constants';
-import { databaseConfig } from 'src/config/database.config';
+import { databaseConfig } from 'src/config/db/database.config';
 
 export const databaseProviders = [
   {

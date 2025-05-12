@@ -20,6 +20,6 @@ export const databaseConfig: DataSourceOptions = {
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
-  entities: [path.join(__dirname, '../**/*.entity{.ts,.js}')],
+  entities: [path.join(__dirname, '../../modules/**/*.entity{.ts,.js}')],
   synchronize: true,
 };
