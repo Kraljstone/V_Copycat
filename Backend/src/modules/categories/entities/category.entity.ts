@@ -4,8 +4,10 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 import { Tables } from 'src/utils/constants';
+import { AutomobileCategory } from '../../automobiles/entities/automobile.entity';
 
 @Entity(Tables.CFG_CATEGORIES)
 export class CfgCategory {
@@ -20,6 +22,9 @@ export class CfgCategory {
 
   @Column({ type: 'text', nullable: true })
   description?: string;
+
+  @OneToMany(() => AutomobileCategory, category => category.module)
+  automobileCategories: AutomobileCategory[];
 
   @CreateDateColumn({
     type: 'timestamp',
