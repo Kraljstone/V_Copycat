@@ -1,48 +1,47 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNumber, IsOptional, Min, MaxLength, IsArray } from 'class-validator';
 
-export class CreateAutomobileDto {
+export class AutomobileResponseDto {
+  @ApiProperty({
+    description: 'Unique identifier of the automobile ad',
+    example: 1,
+  })
+  id: number;
+
   @ApiProperty({
     description: 'Title of the automobile ad',
     example: '2023 Toyota Camry XSE',
-    maxLength: 255,
   })
-  @IsString()
-  @MaxLength(255)
   title: string;
+
+  @ApiProperty({
+    description: 'URL-friendly slug for the ad',
+    example: '2023-toyota-camry-xse',
+  })
+  slug: string;
 
   @ApiProperty({
     description: 'Description of the automobile',
     example: 'Excellent condition, low mileage, all features working perfectly',
     required: false,
-    maxLength: 5000,
   })
-  @IsString()
-  @IsOptional()
-  @MaxLength(5000)
   description?: string;
 
   @ApiProperty({
     description: 'Price of the automobile',
     example: 25000.0,
-    minimum: 0,
   })
-  @IsNumber()
-  @Min(0)
   price: number;
 
   @ApiProperty({
     description: 'Category ID of the automobile',
     example: 1,
   })
-  @IsNumber()
   categoryId: number;
 
   @ApiProperty({
     description: 'Make ID of the automobile',
     example: 1,
   })
-  @IsNumber()
   makeId: number;
 
   @ApiProperty({
@@ -50,24 +49,41 @@ export class CreateAutomobileDto {
     example: 1,
     required: false,
   })
-  @IsNumber()
-  @IsOptional()
   modelId?: number;
 
   @ApiProperty({
     description: 'City ID where the automobile is located',
     example: 1,
   })
-  @IsNumber()
   cityId: number;
 
   @ApiProperty({
-    description: 'Array of image URLs for the automobile',
-    example: ['https://example.com/image1.jpg', 'https://example.com/image2.jpg'],
-    required: false,
+    description: 'Creation date of the ad',
+    example: '2024-03-20T10:00:00Z',
   })
-  @IsArray()
-  @IsString({ each: true })
-  @IsOptional()
-  images?: string[];
+  createDatetime: Date;
+
+  @ApiProperty({
+    description: 'Whether the ad is live',
+    example: true,
+  })
+  isLive: boolean;
+
+  @ApiProperty({
+    description: 'Whether the ad is in review',
+    example: false,
+  })
+  isInReview: boolean;
+
+  @ApiProperty({
+    description: 'Whether the ad is paid',
+    example: false,
+  })
+  isPaid: boolean;
+
+  @ApiProperty({
+    description: 'Whether the ad is archived',
+    example: false,
+  })
+  isArchived: boolean;
 }

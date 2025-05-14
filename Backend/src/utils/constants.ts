@@ -1,5 +1,5 @@
 export enum Routes {
-  USERS = 'users',
+  AUTH = 'auth',
   CATEGORIES = 'categories',
   AUTOMOBILES = 'automobiles',
   LOCATIONS = 'locations',
@@ -8,8 +8,8 @@ export enum Routes {
 }
 
 export enum Services {
-  USERS = 'USERS_SERVICE',
-  USERS_REPOSITORY = 'USERS_REPOSITORY',
+  AUTH = 'AUTH_SERVICE',
+  AUTH_REPOSITORY = 'AUTH_REPOSITORY',
   CFG_CATEGORIES = 'CFG_CATEGORIES_SERVICE',
   CFG_CATEGORIES_REPOSITORY = 'CFG_CATEGORIES_REPOSITORY',
   AUTOMOBILE_ADS = 'AUTOMOBILE_ADS_SERVICE',

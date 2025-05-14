@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { databaseConfig } from './config/db/database.config';
-import { UsersModule } from './modules/users/users.module';
+import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { LocationModule } from './modules/locations/locations.module';
@@ -10,7 +10,7 @@ import { AutomobilesModule } from './modules/automobiles/automobiles.module';
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot(databaseConfig),
-    UsersModule,
+    AuthModule,
     CategoriesModule,
     LocationModule,
     AutomobilesModule,

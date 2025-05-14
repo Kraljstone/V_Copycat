@@ -3,7 +3,7 @@ import { AutomobilesController } from './automobiles.controller';
 import { AutomobileAd } from './entities/automobile.entity';
 import { AutomobilesService } from './automobiles.service';
 import { createRepositoryProvider } from 'src/utils/generic-providers';
-import { DatabaseModule } from '../database/database.module';
+import { DatabaseModule } from '../../database/database.module';
 import { Services } from 'src/utils/constants';
 
 @Module({

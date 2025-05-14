@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { Exclude, Expose } from 'class-transformer';
 import { Tables } from 'src/utils/constants';
 @Entity(Tables.USERS)
@@ -61,6 +67,10 @@ export class User {
   @Expose()
   phoneNumber: string;
 
+  @Column({ type: 'varchar', length: 255, nullable: true, name: 'refresh_token' })
+  @Expose()
+  refreshToken: string;
+
   @CreateDateColumn({
     type: 'timestamp',
     name: 'created_at',
@@ -68,4 +78,8 @@ export class User {
   })
   @Expose()
   createdAt: Date;
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  @Expose()
+  updatedAt: Date;
 }
