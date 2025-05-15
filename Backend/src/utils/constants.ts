@@ -310,6 +310,7 @@ export const SwaggerTags = {
     QUERY_PARAMS: {
       PAGE: 'page',
       PAGE_DESCRIPTION: 'Page number for pagination (default: 1)',
+      PAGE_EXAMPLE: 1,
     },
 
     RESPONSE: {
