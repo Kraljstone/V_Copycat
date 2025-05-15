@@ -13,6 +13,7 @@ for (const envVar of requiredEnvVars) {
   }
 }
 
+// Database configuration
 export const databaseConfig: DataSourceOptions = {
   type: 'postgres',
   host: process.env.DB_HOST,

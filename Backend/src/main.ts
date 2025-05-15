@@ -40,10 +40,6 @@ const bootstrap = async () => {
     .setDescription('The Copycat API documentation')
     .setVersion('1.0')
     .addBearerAuth()
-    .addTag('auth', 'Authentication endpoints')
-    .addTag('categories', 'Category management')
-    .addTag('locations', 'Location management')
-    .addTag('automobiles', 'Automobile management')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

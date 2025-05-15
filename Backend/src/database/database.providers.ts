@@ -6,8 +6,7 @@ export const databaseProviders = [
   {
     provide: Database.DATA_SOURCE,
     useFactory: async () => {
-      const dataSource = new DataSource(databaseConfig);
-      return dataSource.initialize();
+      return new DataSource(databaseConfig).initialize();
     },
   },
 ];

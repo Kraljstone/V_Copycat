@@ -1,5 +1,4 @@
 export const Routes = {
-  AUTH: 'auth',
   CATEGORIES: 'categories',
   LOCATIONS: 'locations',
   LATEST: 'deals/latest',
@@ -16,6 +15,13 @@ export const Routes = {
   HOME: {
     ROUTE: 'home',
     LATEST: 'deals/latest',
+  },
+
+  AUTH: {
+    ROUTE: 'auth',
+    REGISTER: 'register',
+    LOGIN: 'login',
+    REFRESH: 'refresh',
   },
 };
 
@@ -266,6 +272,7 @@ export const Tables = {
 export const SwaggerTags = {
   API: {
     TAGS: {
+      AUTH: 'Authentication',
       LOCATIONS: 'Locations',
       AUTOMOBILES: 'Automobiles',
       CATEGORIES: 'Categories',
@@ -286,6 +293,9 @@ export const SwaggerTags = {
       GET_AUTOMOBILE_AD: 'Get automobile ad details by slug',
       GET_SPONSORED_ADS: 'Get all sponsored ads',
       GET_LATEST_ADS: 'Get latest ads',
+      REGISTER: 'Register a new user',
+      LOGIN: 'Login user',
+      REFRESH: 'Refresh access token',
     },
 
     OPERATIONS_DESCRIPTION: {
@@ -311,6 +321,9 @@ export const SwaggerTags = {
             GET_AUTOMOBILE_AD: 'Returns the details of a specific automobile ad',
             GET_LOCATIONS: 'Returns a list of all locations',
             GET_LATEST_ADS: 'Returns a list of latest ads',
+            REFRESH_TOKENS: 'Tokens successfully refreshed',
+            LOGIN: 'User successfully logged in',
+            REGISTER: 'User successfully registered',
           },
         },
       },
@@ -331,11 +344,29 @@ export const SwaggerTags = {
           MESSAGE: {
             GET_LATEST_AUTOMOBILES: 'Invalid page number',
             GET_LATEST_ADS: 'Invalid page number',
+            REGISTER: 'Invalid input data',
+            LOGIN: 'Invalid credentials',
+          },
+        },
+      },
+      UNAUTHORIZED: {
+        STATUS: {
+          CODE: 401,
+          MESSAGE: {
+            REFRESH_TOKENS: 'Unauthorized - Invalid refresh token',
+            LOGIN: 'Unauthorized - Invalid credentials',
+          },
+        },
+      },
+      CONFLICT: {
+        STATUS: {
+          CODE: 409,
+          MESSAGE: {
+            REGISTER: 'User already exists',
           },
         },
       },
     },
-
     PARAMS: {
       AUTOMOBILES: {
         SLUG: 'slug',
