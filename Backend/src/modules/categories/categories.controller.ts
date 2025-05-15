@@ -1,10 +1,10 @@
 import { Controller, Get, Inject } from '@nestjs/common';
-import { Routes, Services } from 'src/utils/constants';
+import { Routes, Services, SwaggerTags } from 'src/utils/constants';
 import { ICategoriesService } from './categories';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { CategoryResponseDto } from './dto/category-response.dto';
 
-@ApiTags('Categories')
+@ApiTags(SwaggerTags.API.TAGS.CATEGORIES)
 @Controller(Routes.CATEGORIES)
 export class CategoriesController {
   constructor(
@@ -13,10 +13,10 @@ export class CategoriesController {
   ) {}
 
   @Get()
-  @ApiOperation({ summary: 'Get all categories' })
+  @ApiOperation({ summary: SwaggerTags.API.OPERATIONS.GET_CATEGORIES })
   @ApiResponse({
-    status: 200,
-    description: 'Returns a list of all available categories',
+    status: SwaggerTags.API.RESPONSE.OK.STATUS.CODE,
+    description: SwaggerTags.API.OPERATIONS_DESCRIPTION.GET_CATEGORIES,
     type: [CategoryResponseDto],
   })
   getCategories() {

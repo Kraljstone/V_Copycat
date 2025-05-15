@@ -9,7 +9,7 @@ import {
 import { Tables } from 'src/utils/constants';
 import { AutomobileCategory } from '../../automobiles/entities/automobile.entity';
 
-@Entity(Tables.CFG_CATEGORIES)
+@Entity(Tables.CFG_CATEGORIES.TABLE)
 export class CfgCategory {
   @PrimaryGeneratedColumn()
   module_id: number;
@@ -28,14 +28,14 @@ export class CfgCategory {
 
   @CreateDateColumn({
     type: 'timestamp',
-    name: 'create_datetime',
+    name: Tables.CFG_CATEGORIES.COLUMN.CREATE_DATETIME,
     default: () => 'CURRENT_TIMESTAMP',
   })
   create_datetime: Date;
 
   @UpdateDateColumn({
     type: 'timestamp',
-    name: 'update_datetime',
+    name: Tables.CFG_CATEGORIES.COLUMN.UPDATE_DATETIME,
     nullable: true,
     onUpdate: 'CURRENT_TIMESTAMP',
   })

@@ -7,9 +7,9 @@ import {
 } from 'typeorm';
 import { Exclude, Expose } from 'class-transformer';
 import { Tables } from 'src/utils/constants';
-@Entity(Tables.USERS)
+@Entity(Tables.USERS.TABLE)
 export class User {
-  @PrimaryGeneratedColumn({ type: 'int', name: 'user_id' })
+  @PrimaryGeneratedColumn({ type: 'int', name: Tables.USERS.COLUMN.ID })
   @Expose()
   userId: number;
 
@@ -25,7 +25,7 @@ export class User {
     type: 'varchar',
     length: 255,
     nullable: false,
-    name: 'hash_password',
+    name: Tables.USERS.COLUMN.PASSWORD,
   })
   @Exclude()
   hashPassword: string;
@@ -34,18 +34,18 @@ export class User {
     type: 'varchar',
     length: 255,
     nullable: true,
-    name: 'profile_image_url',
+    name: Tables.USERS.COLUMN.PROFILE_IMAGE_URL,
   })
   @Expose()
   profileImageUrl?: string;
 
-  @Column({ type: 'boolean', default: false, name: 'is_legacy_user' })
+  @Column({ type: 'boolean', default: false, name: Tables.USERS.COLUMN.IS_LEGACY_USER })
   @Expose()
   isLegacyUser: boolean;
 
   @CreateDateColumn({
     type: 'timestamp',
-    name: 'account_creation_datetime',
+    name: Tables.USERS.COLUMN.ACCOUNT_CREATION_DATETIME,
     default: () => 'CURRENT_TIMESTAMP',
   })
   @Expose()
@@ -59,27 +59,27 @@ export class User {
   @Expose()
   disabled: boolean;
 
-  @Column({ type: 'boolean', default: false, name: 'account_verified' })
+  @Column({ type: 'boolean', default: false, name: Tables.USERS.COLUMN.ACCOUNT_VERIFIED })
   @Expose()
   accountVerified: boolean;
 
-  @Column({ type: 'varchar', length: 255, nullable: false, name: 'phone_number' })
+  @Column({ type: 'varchar', length: 255, nullable: false, name: Tables.USERS.COLUMN.PHONE_NUMBER })
   @Expose()
   phoneNumber: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: true, name: 'refresh_token' })
+  @Column({ type: 'varchar', length: 255, nullable: true, name: Tables.USERS.COLUMN.REFRESH_TOKEN })
   @Expose()
   refreshToken: string;
 
   @CreateDateColumn({
     type: 'timestamp',
-    name: 'created_at',
+    name: Tables.USERS.COLUMN.CREATED_AT,
     default: () => 'CURRENT_TIMESTAMP',
   })
   @Expose()
   createdAt: Date;
 
-  @UpdateDateColumn({ name: 'updated_at' })
+  @UpdateDateColumn({ name: Tables.USERS.COLUMN.UPDATED_AT })
   @Expose()
   updatedAt: Date;
 }

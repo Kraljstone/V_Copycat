@@ -6,6 +6,8 @@ import { ConfigModule } from '@nestjs/config';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { LocationModule } from './modules/locations/locations.module';
 import { AutomobilesModule } from './modules/automobiles/automobiles.module';
+import { HomeModule } from './modules/home/home.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -14,6 +16,7 @@ import { AutomobilesModule } from './modules/automobiles/automobiles.module';
     CategoriesModule,
     LocationModule,
     AutomobilesModule,
+    HomeModule,
   ],
 })
 export class AppModule {}

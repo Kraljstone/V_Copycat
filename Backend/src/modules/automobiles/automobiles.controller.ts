@@ -1,58 +1,69 @@
 import { Controller, Get, Inject, Logger, Param, Query } from '@nestjs/common';
-import { Routes, Services } from 'src/utils/constants';
+import { Routes, Services, SwaggerTags } from 'src/utils/constants';
 import { IAutomobilesService } from './automobiles';
 import { ApiTags, ApiOperation, ApiResponse, ApiQuery, ApiParam } from '@nestjs/swagger';
 import { GetLatestAutomobilesDto } from './dto/get-latest-automobiles.dto';
 import { PaginatedAutomobileResponseDto } from './dto/paginated-automobile-response.dto';
 import { AutomobileResponseDto } from './dto/automobile-response.dto';
 
-@ApiTags('Automobiles')
-@Controller(Routes.AUTOMOBILES)
+@ApiTags(SwaggerTags.API.TAGS.AUTOMOBILES)
+@Controller(Routes.AUTOMOBILE.ROUTE)
 export class AutomobilesController {
   constructor(
     @Inject(Services.AUTOMOBILE_ADS)
     private readonly automobilesService: IAutomobilesService,
   ) {}
 
-  @Get(Routes.LATEST)
-  @ApiOperation({ summary: 'Get latest automobile listings' })
+  @Get(Routes.AUTOMOBILE.LATEST)
+  @ApiOperation({ summary: SwaggerTags.API.OPERATIONS.GET_LATEST_AUTOMOBILES })
   @ApiQuery({
-    name: 'page',
+    name: SwaggerTags.API.QUERY_PARAMS.PAGE,
     required: false,
     type: Number,
-    description: 'Page number for pagination (default: 1)',
+    description: SwaggerTags.API.QUERY_PARAMS.PAGE_DESCRIPTION,
     example: 1,
   })
   @ApiResponse({
-    status: 200,
-    description: 'Returns a paginated list of latest automobile listings',
+    status: SwaggerTags.API.RESPONSE.OK.STATUS.CODE,
+    description: SwaggerTags.API.OPERATIONS_DESCRIPTION.GET_LATEST_AUTOMOBILES,
     type: PaginatedAutomobileResponseDto,
   })
   @ApiResponse({
-    status: 400,
-    description: 'Bad request - Invalid page number',
+    status: SwaggerTags.API.RESPONSE.BAD_REQUEST.STATUS.CODE,
+    description: SwaggerTags.API.RESPONSE.BAD_REQUEST.STATUS.MESSAGE.GET_LATEST_AUTOMOBILES,
   })
   async getLatestAutomobiles(@Query() query: GetLatestAutomobilesDto) {
     return this.automobilesService.getLatestAutomobiles(query.page);
   }
 
-  @Get(Routes.AUTOMOBILE_AD)
-  @ApiOperation({ summary: 'Get automobile ad details by slug' })
+  @Get(Routes.AUTOMOBILE.AD)
+  @ApiOperation({ summary: SwaggerTags.API.OPERATIONS.GET_AUTOMOBILE_AD })
   @ApiParam({
-    name: 'slug',
-    description: 'The unique identifier (slug) of the automobile ad',
-    example: 'toyota-camry-2023',
+    name: SwaggerTags.API.PARAMS.AUTOMOBILES.SLUG,
+    description: SwaggerTags.API.PARAMS.AUTOMOBILES.DESCRIPTION,
+    example: SwaggerTags.API.PARAMS.AUTOMOBILES.EXAMPLE,
   })
   @ApiResponse({
-    status: 200,
-    description: 'Returns the details of a specific automobile ad',
+    status: SwaggerTags.API.RESPONSE.OK.STATUS.CODE,
+    description: SwaggerTags.API.RESPONSE.OK.STATUS.MESSAGE.GET_AUTOMOBILE_AD,
     type: AutomobileResponseDto,
   })
   @ApiResponse({
-    status: 404,
-    description: 'Automobile ad not found',
+    status: SwaggerTags.API.RESPONSE.NOT_FOUND.STATUS.CODE,
+    description: SwaggerTags.API.RESPONSE.NOT_FOUND.STATUS.MESSAGE.GET_AUTOMOBILE_AD,
   })
   async getAutomobileAd(@Param('slug') slug: string) {
     return this.automobilesService.getAutomobileAd(slug);
+  }
+
+  @Get(Routes.AUTOMOBILE.SPONSORED)
+  @ApiOperation({ summary: SwaggerTags.API.OPERATIONS.GET_SPONSORED_ADS })
+  @ApiResponse({
+    status: SwaggerTags.API.RESPONSE.OK.STATUS.CODE,
+    description: SwaggerTags.API.OPERATIONS_DESCRIPTION.GET_SPONSORED_ADS,
+    type: [AutomobileResponseDto],
+  })
+  async getSponsoredAds() {
+    return this.automobilesService.getSponsoredAds();
   }
 }

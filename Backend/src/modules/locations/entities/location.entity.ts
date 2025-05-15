@@ -1,26 +1,27 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
+import { Tables } from 'src/utils/constants';
 
-@Entity({ name: 'cfg_states' })
+@Entity(Tables.CFG_STATES.TABLE)
 export class State {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'name_key', unique: true })
+  @Column({ name: Tables.CFG_STATES.COLUMN.NAME_KEY, unique: true })
   nameKey: string;
 
   @OneToMany(() => City, city => city.state)
   cities: City[];
 }
 
-@Entity({ name: 'cfg_cities' })
+@Entity(Tables.CFG_CITIES.TABLE)
 export class City {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'city_key', unique: true })
+  @Column({ name: Tables.CFG_CITIES.COLUMN.CITY_KEY, unique: true })
   cityKey: string;
 
   @ManyToOne(() => State, state => state.cities, { eager: true })
-  @JoinColumn({ name: 'state_id' })
+  @JoinColumn({ name: Tables.CFG_CITIES.COLUMN.STATE_ID })
   state: State;
 }

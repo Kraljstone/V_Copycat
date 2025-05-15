@@ -23,6 +23,7 @@ export const databaseConfig: DataSourceOptions = {
   entities: [
     path.join(__dirname, '../../modules/**/*.entity{.ts,.js}'),
     path.join(__dirname, '../../auth/**/*.entity{.ts,.js}'),
+    path.join(__dirname, '../../typeorm/**/*.entity{.ts,.js}'),
   ],
   synchronize: true,
 };
