@@ -3,10 +3,11 @@ import { Repository } from 'typeorm';
 import { Services } from 'src/utils/constants';
 import { HomepageLatestAdsView } from './entities/home.entity';
 import { IHomeService } from './home';
+import { InjectRepository } from '@nestjs/typeorm';
 @Injectable()
 export class HomeService implements IHomeService {
   constructor(
-    @Inject(Services.HOMEPAGE_LATEST_ADS_VIEW_REPOSITORY)
+    @InjectRepository(HomepageLatestAdsView)
     private homepageLatestAdsViewRepository: Repository<HomepageLatestAdsView>,
   ) {}
 

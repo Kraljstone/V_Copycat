@@ -3,16 +3,14 @@ import { RegisterUserParams, IAuthService, LoginUserParams, TokenPayload } from 
 import { User } from './entities/auth.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
-import { Inject } from '@nestjs/common';
-import { Services } from '../utils/constants';
 import { JwtService } from '@nestjs/jwt';
-
+import { InjectRepository } from '@nestjs/typeorm';
 @Injectable()
 export class AuthService implements IAuthService {
   private readonly logger = new Logger(AuthService.name);
 
   constructor(
-    @Inject(Services.AUTH_REPOSITORY)
+    @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     private readonly jwtService: JwtService,
   ) {}

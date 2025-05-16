@@ -1,12 +1,14 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { Services } from 'src/utils/constants';
 import { State } from './entities/location.entity';
 import { ILocationService } from './locations';
-
+import { InjectRepository } from '@nestjs/typeorm';
 @Injectable()
 export class LocationService implements ILocationService {
-  constructor(@Inject(Services.STATE_REPOSITORY) private stateRepository: Repository<State>) {}
+  constructor(
+    @InjectRepository(State)
+    private stateRepository: Repository<State>,
+  ) {}
 
   async getLocation() {
     const states = await this.stateRepository.find({

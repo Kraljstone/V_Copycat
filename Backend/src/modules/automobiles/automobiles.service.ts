@@ -2,20 +2,20 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { AutomobileAd } from './entities/automobile.entity';
 import { Repository } from 'typeorm';
 import { IAutomobilesService } from './automobiles';
-import { Services } from 'src/utils/constants';
 import { Sponsored } from 'src/typeorm/entities/sponsored.entity';
 import { AutomobileLatestAdsView } from './entities/automobile-latest-ads.view.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class AutomobilesService implements IAutomobilesService {
   constructor(
-    @Inject(Services.AUTOMOBILE_ADS_REPOSITORY)
+    @InjectRepository(AutomobileAd)
     private automobileAdRepository: Repository<AutomobileAd>,
 
-    @Inject(Services.SPONSORED_REPOSITORY)
+    @InjectRepository(Sponsored)
     private sponsoredRepository: Repository<Sponsored>,
 
-    @Inject(Services.AUTOMOBILE_LATEST_ADS_VIEW_REPOSITORY)
+    @InjectRepository(AutomobileLatestAdsView)
     private automobileLatestAdsViewRepository: Repository<AutomobileLatestAdsView>,
   ) {}
 
