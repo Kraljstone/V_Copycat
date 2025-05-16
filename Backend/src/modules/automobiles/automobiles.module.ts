@@ -1,0 +1,19 @@
+import { Module } from '@nestjs/common';
+import { AutomobilesController } from './automobiles.controller';
+import { AutomobileAd } from './entities/automobile.entity';
+import { AutomobilesService } from './automobiles.service';
+import { Services } from 'src/utils/constants';
+import { Sponsored } from 'src/typeorm/entities/sponsored.entity';
+import { AutomobileLatestAdsView } from './entities/automobile-latest-ads.view.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
+@Module({
+  imports: [TypeOrmModule.forFeature([AutomobileAd, Sponsored, AutomobileLatestAdsView])],
+  controllers: [AutomobilesController],
+  providers: [
+    {
+      provide: Services.AUTOMOBILE_ADS,
+      useClass: AutomobilesService,
+    },
+  ],
+})
+export class AutomobilesModule {}
