@@ -1,34 +1,35 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { AutomobileResponseDto } from './automobile-response.dto';
 
+/**
+ * Response DTO for paginated automobile listings
+ */
 export class PaginatedAutomobileResponseDto {
-  @ApiProperty({
-    description: 'Array of automobile ads',
-    type: [AutomobileResponseDto],
-  })
+  /**
+   * Array of automobile ads
+   */
   items: AutomobileResponseDto[];
 
-  @ApiProperty({
-    description: 'Total number of items',
-    example: 100,
-  })
+  /**
+   * Total number of items
+   * @example 100
+   */
   total: number;
 
-  @ApiProperty({
-    description: 'Current page number',
-    example: 1,
-  })
+  /**
+   * Current page number
+   * @example 1
+   */
   page: number;
 
-  @ApiProperty({
-    description: 'Number of items per page',
-    example: 10,
-  })
+  /**
+   * Number of items per page
+   * @example 10
+   */
   limit: number;
 
-  @ApiProperty({
-    description: 'Total number of pages',
-    example: 10,
-  })
+  /**
+   * Total number of pages
+   * @example 10
+   */
   totalPages: number;
 }

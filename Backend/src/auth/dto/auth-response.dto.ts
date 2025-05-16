@@ -1,22 +1,28 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { User } from '../entities/auth.entity';
 
+/**
+ * Response DTO for authentication data
+ */
 export class AuthResponseDto {
-  @ApiProperty({
-    description: 'User information',
-    type: User,
-  })
+  /**
+   * User information
+   * @example {
+   *   "id": 1,
+   *   "fullname": "John Doe",
+   *   "phoneNumber": "+381637471812"
+   * }
+   */
   user: User;
 
-  @ApiProperty({
-    description: 'JWT access token',
-    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
-  })
+  /**
+   * JWT access token
+   * @example "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+   */
   accessToken: string;
 
-  @ApiProperty({
-    description: 'JWT refresh token',
-    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
-  })
+  /**
+   * JWT refresh token
+   * @example "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+   */
   refreshToken: string;
 }

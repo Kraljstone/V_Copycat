@@ -1,15 +1,15 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { IsNumber, IsOptional, Min } from 'class-validator';
 import { Type } from 'class-transformer';
 
+/**
+ * DTO for getting latest automobile listings with pagination
+ */
 export class GetLatestAutomobilesDto {
-  @ApiProperty({
-    description: 'Page number for pagination',
-    required: false,
-    default: 1,
-    minimum: 1,
-    example: 1,
-  })
+  /**
+   * Page number for pagination
+   * @example 1
+   * @default 1
+   */
   @IsOptional()
   @Type(() => Number)
   @IsNumber()

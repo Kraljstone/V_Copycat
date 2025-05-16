@@ -1,11 +1,13 @@
 import { IsString, IsNotEmpty, IsPhoneNumber } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
 
+/**
+ * DTO for user login
+ */
 export class LoginUserDto {
-  @ApiProperty({
-    description: "User's phone number with country code",
-    example: '+381637471812',
-  })
+  /**
+   * User's phone number with country code
+   * @example "+381637471812"
+   */
   @IsString({ message: 'Phone number must be a string' })
   @IsNotEmpty({ message: 'Phone number is required' })
   @IsPhoneNumber(undefined, {
@@ -13,10 +15,10 @@ export class LoginUserDto {
   })
   phoneNumber: string;
 
-  @ApiProperty({
-    description: "User's password",
-    example: 'StrongP@ss123',
-  })
+  /**
+   * User's password
+   * @example "StrongP@ss123"
+   */
   @IsString({ message: 'Password must be a string' })
   @IsNotEmpty({ message: 'Password is required' })
   password: string;

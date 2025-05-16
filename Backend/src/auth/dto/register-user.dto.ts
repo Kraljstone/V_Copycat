@@ -1,19 +1,21 @@
 import { IsString, IsNotEmpty, IsPhoneNumber, IsStrongPassword } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
 
+/**
+ * DTO for user registration
+ */
 export class RegisterUserDto {
-  @ApiProperty({
-    description: "User's full name",
-    example: 'John Doe',
-  })
+  /**
+   * User's full name
+   * @example "John Doe"
+   */
   @IsString({ message: 'Fullname must be a string' })
   @IsNotEmpty({ message: 'Fullname is required' })
   fullname: string;
 
-  @ApiProperty({
-    description: "User's phone number with country code",
-    example: '+381637471812',
-  })
+  /**
+   * User's phone number with country code
+   * @example "+381637471812"
+   */
   @IsString({ message: 'Phone number must be a string' })
   @IsNotEmpty({ message: 'Phone number is required' })
   @IsPhoneNumber(undefined, {
@@ -21,11 +23,10 @@ export class RegisterUserDto {
   })
   phoneNumber: string;
 
-  @ApiProperty({
-    description:
-      "User's password - must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character",
-    example: 'StrongP@ss123',
-  })
+  /**
+   * User's password - must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character
+   * @example "StrongP@ss123"
+   */
   @IsString({ message: 'Password must be a string' })
   @IsNotEmpty({ message: 'Password is required' })
   @IsStrongPassword(
@@ -43,10 +44,10 @@ export class RegisterUserDto {
   )
   password: string;
 
-  @ApiProperty({
-    description: 'Password confirmation - must match the password field',
-    example: 'StrongP@ss123',
-  })
+  /**
+   * Password confirmation - must match the password field
+   * @example "StrongP@ss123"
+   */
   @IsString({ message: 'Confirm password must be a string' })
   @IsNotEmpty({ message: 'Confirm password is required' })
   @IsStrongPassword(

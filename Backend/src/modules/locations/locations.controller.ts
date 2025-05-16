@@ -1,10 +1,8 @@
 import { Controller, Get, Inject } from '@nestjs/common';
 import { LocationService } from './locations.service';
-import { Routes, Services, SwaggerTags } from 'src/utils/constants';
-import { ApiTags } from '@nestjs/swagger';
-import { ApiLocationDocs } from './docs/location.docs';
+import { Routes, Services } from 'src/utils/constants';
+import { LocationResponseDto } from './dto/location-response.dto';
 
-@ApiTags(SwaggerTags.API.TAGS.LOCATIONS)
 @Controller(Routes.LOCATIONS)
 export class LocationController {
   constructor(
@@ -12,9 +10,8 @@ export class LocationController {
     private readonly locationService: LocationService,
   ) {}
 
-  @ApiLocationDocs()
   @Get()
-  async getLocation() {
+  async getLocation(): Promise<LocationResponseDto> {
     return this.locationService.getLocation();
   }
 }

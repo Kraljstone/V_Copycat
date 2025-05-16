@@ -1,11 +1,5 @@
-import { State } from './entities/location.entity';
-import { City } from './entities/location.entity';
+import { LocationResponseDto } from './dto/location-response.dto';
 
 export interface ILocationService {
-  getLocation(): Promise<{ states: State[] }>;
-}
-
-export interface Location {
-  states: State[];
-  cities: City[];
+  getLocation(): Promise<LocationResponseDto>;
 }

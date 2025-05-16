@@ -1,37 +1,14 @@
-import { ApiProperty } from '@nestjs/swagger';
-
-// Define StateResponseDto first
-export class StateResponseDto {
-  @ApiProperty({
-    description: 'Unique identifier of the state',
-    example: 1,
-  })
+export class CityDto {
   id: number;
-
-  @ApiProperty({
-    description: 'Unique key identifier for the state',
-    example: 'new-york',
-  })
-  nameKey: string;
+  cityKey: string;
 }
 
-// Then define CityResponseDto which uses StateResponseDto
-export class CityResponseDto {
-  @ApiProperty({
-    description: 'Unique identifier of the city',
-    example: 1,
-  })
+export class StateDto {
   id: number;
+  nameKey: string;
+  cities: CityDto[];
+}
 
-  @ApiProperty({
-    description: 'Unique key identifier for the city',
-    example: 'new-york',
-  })
-  cityKey: string;
-
-  @ApiProperty({
-    description: 'State information',
-    type: () => StateResponseDto,
-  })
-  state: StateResponseDto;
+export class LocationResponseDto {
+  states: StateDto[];
 }
