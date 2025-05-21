@@ -1,76 +1,49 @@
-import { ViewEntity, ViewColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn } from 'typeorm';
 
-@ViewEntity({
-  name: 'homepageLatestAdsView',
-  expression: `
-    SELECT
-      a.auto_ad_id AS "adId",
-      a.slug,
-      a.title,
-      COALESCE(CAST(a.price AS VARCHAR), 'undetermined') AS price,
-      a.create_datetime AS "postedAt",
-      cat.category_key AS "categoryName",
-      cat.automobile_cat_id AS "categoryId",
-      u.fullname AS "sellerName",
-      u.user_id AS "sellerId",
-      u.profile_image_url AS "sellerImageUrl",
-      city.city_key AS location,
-      (SELECT COUNT(*) FROM trn_user_views v WHERE v.ad_id = a.auto_ad_id) AS "viewCount",
-      (SELECT image_url FROM trn_automobile_ad_images i WHERE i.ad_id = a.auto_ad_id ORDER BY i.order_number LIMIT 1) AS "imageUrl",
-      (SELECT COUNT(*) FROM trn_automobile_ad_images i WHERE i.ad_id = a.auto_ad_id) AS "pictureCount",
-      a.is_sold AS sold
-    FROM
-      trn_automobile_ads a
-      LEFT JOIN users u ON a.user_id = u.user_id
-      LEFT JOIN cfg_automobile_categories cat ON a.category_id = cat.automobile_cat_id
-      LEFT JOIN cfg_cities city ON a.city_id = city.id
-    WHERE
-      a.is_live = TRUE
-  `,
-})
+@Entity()
 export class HomepageLatestAdsView {
-  @ViewColumn({ name: 'adId' })
+  @PrimaryColumn({ name: 'adId' })
   adId: number;
 
-  @ViewColumn()
+  @Column()
   slug: string;
 
-  @ViewColumn()
+  @Column()
   title: string;
 
-  @ViewColumn()
+  @Column()
   price: string;
 
-  @ViewColumn({ name: 'postedAt' })
+  @Column({ name: 'postedAt' })
   postedAt: Date;
 
-  @ViewColumn({ name: 'categoryName' })
+  @Column({ name: 'categoryName' })
   categoryName: string;
 
-  @ViewColumn({ name: 'categoryId' })
+  @Column({ name: 'categoryId' })
   categoryId: number;
 
-  @ViewColumn({ name: 'sellerName' })
+  @Column({ name: 'sellerName' })
   sellerName: string;
 
-  @ViewColumn({ name: 'sellerId' })
+  @Column({ name: 'sellerId' })
   sellerId: number;
 
-  @ViewColumn({ name: 'sellerImageUrl' })
+  @Column({ name: 'sellerImageUrl' })
   sellerImageUrl: string;
 
-  @ViewColumn()
+  @Column()
   location: string;
 
-  @ViewColumn({ name: 'viewCount' })
+  @Column({ name: 'viewCount' })
   viewCount: number;
 
-  @ViewColumn({ name: 'imageUrl' })
+  @Column({ name: 'imageUrl' })
   imageUrl: string;
 
-  @ViewColumn({ name: 'pictureCount' })
+  @Column({ name: 'pictureCount' })
   pictureCount: number;
 
-  @ViewColumn()
+  @Column()
   sold: boolean;
 }

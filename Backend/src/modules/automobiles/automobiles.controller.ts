@@ -1,10 +1,8 @@
 import { Controller, Get, Inject, Param, Query } from '@nestjs/common';
-import { Routes, Services, SwaggerTags } from 'src/utils/constants';
+import { Routes, Services } from 'src/utils/constants';
 import { IAutomobilesService } from './automobiles';
-import { ApiTags } from '@nestjs/swagger';
 import { GetLatestAutomobilesDto } from './dto/get-latest-automobiles.dto';
 
-@ApiTags(SwaggerTags.API.TAGS.AUTOMOBILES)
 @Controller(Routes.AUTOMOBILE.ROUTE)
 export class AutomobilesController {
   constructor(
