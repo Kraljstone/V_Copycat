@@ -6,7 +6,7 @@ export class State {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: Tables.CFG_STATES.COLUMN.NAME_KEY, unique: true })
+  @Column({ name: Tables.CFG_STATES.COLUMN.NAME_KEY, unique: true, nullable: true })
   nameKey: string;
 
   @OneToMany(() => City, city => city.state)
@@ -18,7 +18,7 @@ export class City {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: Tables.CFG_CITIES.COLUMN.CITY_KEY, unique: true })
+  @Column({ name: Tables.CFG_CITIES.COLUMN.CITY_KEY, unique: true, nullable: true })
   cityKey: string;
 
   @ManyToOne(() => State, state => state.cities, { eager: true })

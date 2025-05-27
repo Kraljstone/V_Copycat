@@ -23,6 +23,10 @@ export const Routes = {
     LOGIN: 'login',
     REFRESH: 'refresh',
   },
+
+  REAL_ESTATE: {
+    ROUTE: 'real-estate',
+  },
 };
 
 export enum Services {
@@ -36,6 +40,7 @@ export enum Services {
   SPONSORED_REPOSITORY = 'SPONSORED_REPOSITORY',
   USERS_REPOSITORY = 'USERS_REPOSITORY',
   HOME_SERVICE = 'HOME_SERVICE',
+  REAL_ESTATE_SERVICE = 'REAL_ESTATE_SERVICE',
 }
 
 export const Tables = {

@@ -7,6 +7,7 @@ import { CategoriesModule } from './modules/categories/categories.module';
 import { LocationModule } from './modules/locations/locations.module';
 import { AutomobilesModule } from './modules/automobiles/automobiles.module';
 import { HomeModule } from './modules/home/home.module';
+import { RealEstateModule } from './modules/real-estate/real-estate.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { HomeModule } from './modules/home/home.module';
     LocationModule,
     AutomobilesModule,
     HomeModule,
+    RealEstateModule,
   ],
 })
 export class AppModule {}
