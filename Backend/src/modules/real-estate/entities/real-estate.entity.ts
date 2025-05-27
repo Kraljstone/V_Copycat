@@ -1,14 +1,14 @@
-import { CfgCategory } from '../../../modules/categories/entities/category.entity';
+import { CfgCategory } from 'src/modules/categories/entities/category.entity';
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { User } from '../../../auth/entities/auth.entity';
-import { City } from '../../locations/entities/location.entity';
+import { User } from 'src/auth/entities/auth.entity';
+import { City } from 'src/modules/locations/entities/location.entity';
 
 @Entity('cfg_states')
 export class State {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'name_key', type: 'varchar', length: 255, nullable: true, unique: true })
+  @Column({ name: 'name_key', type: 'varchar', length: 255, nullable: false, unique: true })
   nameKey: string;
 
   @Column({ name: 'create_datetime', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
@@ -283,4 +283,17 @@ export class UserFavoriteHistory {
   @ManyToOne(() => User, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'user_id' })
   user: User;
+}
+
+@Entity('trn_automobile_ads')
+export class AutomobileAd {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({ name: 'city_id', type: 'int', nullable: false })
+  cityId: number;
+
+  @ManyToOne(() => City, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'city_id' })
+  city: City;
 }

@@ -7,7 +7,8 @@ import { RealEstateCategory } from './entities/real-estate.entity';
 
 @Controller(Routes.REAL_ESTATE.ROUTE)
 export class RealEstateController implements IRealEstateController {
-  logger = new Logger(RealEstateController.name);
+  private readonly logger = new Logger(RealEstateController.name);
+
   constructor(
     @Inject(Services.REAL_ESTATE_SERVICE)
     private readonly realEstateService: RealEstateService,
