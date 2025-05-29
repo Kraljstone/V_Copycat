@@ -124,20 +124,8 @@ export const Tables = {
       CHANGE_REQUEST: 'change_request',
     },
 
-    VIEW: {
-      TABLE: 'automobileLatestAdsView',
-      COLUMN: {
-        ID: 'auto_ad_id',
-        CREATE_DATETIME: 'create_datetime',
-        CATEGORY_KEY: 'category_key',
-        CATEGORY_ID: 'automobile_cat_id',
-        SELLER_NAME: 'sellerName',
-        SELLER_ID: 'sellerId',
-        SELLER_IMAGE_URL: 'sellerImageUrl',
-        VIEW_COUNT: 'viewCount',
-        IMAGE_URL: 'imageUrl',
-        PICTURE_COUNT: 'pictureCount',
-      },
+    VIEWS: {
+      NAME: 'vw_automobile_ads',
     },
   },
 

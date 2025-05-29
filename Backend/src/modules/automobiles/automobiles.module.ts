@@ -5,8 +5,10 @@ import { AutomobilesService } from './automobiles.service';
 import { Services } from 'src/utils/constants';
 import { Sponsored } from 'src/typeorm/entities/sponsored.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AutomobileAdsView } from 'src/modules/automobiles/entities/automobile-ads.view.entity';
+
 @Module({
-  imports: [TypeOrmModule.forFeature([AutomobileAds, Sponsored])],
+  imports: [TypeOrmModule.forFeature([AutomobileAds, Sponsored, AutomobileAdsView])],
   controllers: [AutomobilesController],
   providers: [
     {
