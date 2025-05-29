@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Exclude, Expose } from 'class-transformer';
-import { Tables } from 'src/utils/constants';
+import { Tables } from '../../utils/constants';
 @Entity(Tables.USERS.TABLE)
 export class User {
   @PrimaryGeneratedColumn({ type: 'int', name: Tables.USERS.COLUMN.ID })

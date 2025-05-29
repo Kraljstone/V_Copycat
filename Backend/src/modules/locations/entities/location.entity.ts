@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
-import { Tables } from 'src/utils/constants';
+import { Tables } from '../../../utils/constants';
 
 @Entity(Tables.CFG_STATES.TABLE)
 export class State {

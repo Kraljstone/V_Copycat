@@ -1,6 +1,6 @@
-import { CfgCategory } from 'src/modules/categories/entities/category.entity';
+import { CfgCategory } from '../../../modules/categories/entities/category.entity';
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { User } from 'src/auth/entities/auth.entity';
+import { User } from '../../../auth/entities/auth.entity';
 
 @Entity('cfg_states')
 export class State {

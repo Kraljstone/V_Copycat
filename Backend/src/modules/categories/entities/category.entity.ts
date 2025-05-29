@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
   OneToMany,
 } from 'typeorm';
-import { Tables } from 'src/utils/constants';
+import { Tables } from '../../../utils/constants';
 import { AutomobileCategory } from '../../automobiles/entities/automobile.entity';
 
 @Entity(Tables.CFG_CATEGORIES.TABLE)
