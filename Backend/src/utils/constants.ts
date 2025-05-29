@@ -253,6 +253,12 @@ export const Tables = {
       STATE_ID: 'state_id',
     },
   },
+
+  HOMEPAGE: {
+    VIEWS: {
+      LATEST_ADS: 'vw_homepage_latest_ads',
+    },
+  },
 };
 
 export enum Database {
@@ -262,3 +268,5 @@ export enum Database {
 export enum Strategies {
   JWT_REFRESH = 'jwt-refresh',
 }
+
+export const REFRESH_MATERIALIZED_VIEW = 'REFRESH MATERIALIZED VIEW';
