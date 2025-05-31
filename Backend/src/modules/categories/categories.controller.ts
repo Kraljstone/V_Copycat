@@ -1,9 +1,7 @@
 import { Controller, Get, Inject } from '@nestjs/common';
-import { Routes, Services, SwaggerTags } from 'src/utils/constants';
+import { Routes, Services } from 'src/utils/constants';
 import { ICategoriesService } from './categories';
-import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags(SwaggerTags.API.TAGS.CATEGORIES)
 @Controller(Routes.CATEGORIES)
 export class CategoriesController {
   constructor(

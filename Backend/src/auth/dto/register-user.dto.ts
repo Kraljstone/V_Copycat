@@ -1,4 +1,10 @@
-import { IsString, IsNotEmpty, IsPhoneNumber, IsStrongPassword } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsPhoneNumber,
+  IsStrongPassword,
+  ValidateIf,
+} from 'class-validator';
 
 /**
  * DTO for user registration
@@ -50,18 +56,7 @@ export class RegisterUserDto {
    */
   @IsString({ message: 'Confirm password must be a string' })
   @IsNotEmpty({ message: 'Confirm password is required' })
-  @IsStrongPassword(
-    {
-      minLength: 8,
-      minLowercase: 1,
-      minUppercase: 1,
-      minNumbers: 1,
-      minSymbols: 1,
-    },
-    {
-      message:
-        'Confirm password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character',
-    },
-  )
+  @ValidateIf(o => o.password !== o.confirmPassword)
+  @IsString()
   confirmPassword: string;
 }

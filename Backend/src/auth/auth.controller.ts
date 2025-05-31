@@ -1,12 +1,11 @@
 import { Controller, Post, Body, Inject, UsePipes, UseGuards, Req } from '@nestjs/common';
-import { Routes, Services, SwaggerTags } from 'src/utils/constants';
+import { Routes, Services, Strategies } from 'src/utils/constants';
 import { IAuthService } from './auth';
 import { ValidationPipe } from '@nestjs/common';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthResponseDto } from './dto/auth-response.dto';
-
 @Controller(Routes.AUTH.ROUTE)
 export class AuthController {
   constructor(
@@ -27,7 +26,7 @@ export class AuthController {
     return this.authService.validateUser(loginUserDto);
   }
 
-  @UseGuards(AuthGuard('jwt-refresh'))
+  @UseGuards(AuthGuard(Strategies.JWT_REFRESH))
   @Post(Routes.AUTH.REFRESH)
   refreshTokens(@Req() req: any): Promise<AuthResponseDto> {
     const userId = req.user.userId;

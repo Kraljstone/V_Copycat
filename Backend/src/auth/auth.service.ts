@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ErrorMessages } from 'src/utils/error-messages';
 @Injectable()
 export class AuthService implements IAuthService {
   private readonly logger = new Logger(AuthService.name);
@@ -23,7 +24,7 @@ export class AuthService implements IAuthService {
       });
 
       if (existingUser) {
-        throw new ConflictException('A user with this phone number already exists');
+        throw new ConflictException(ErrorMessages.USER.PHONE_NUMBER_ALREADY_EXISTS);
       }
 
       const hashedPassword = await bcrypt.hash(userDetails.password, 10);
@@ -45,7 +46,7 @@ export class AuthService implements IAuthService {
       if (error instanceof ConflictException) {
         throw error;
       }
-      throw new ConflictException('A user with this phone number already exists');
+      throw new ConflictException(ErrorMessages.USER.PHONE_NUMBER_ALREADY_EXISTS);
     }
   }
 
@@ -55,12 +56,12 @@ export class AuthService implements IAuthService {
     });
 
     if (!user) {
-      throw new UnauthorizedException('Invalid credentials');
+      throw new UnauthorizedException(ErrorMessages.USER.INVALID_CREDENTIALS);
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.hashPassword);
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Invalid credentials');
+      throw new UnauthorizedException(ErrorMessages.USER.INVALID_CREDENTIALS);
     }
 
     const tokens = await this.generateTokens(user);
@@ -76,7 +77,7 @@ export class AuthService implements IAuthService {
     });
 
     if (!user || user.refreshToken !== refreshToken) {
-      throw new UnauthorizedException('Invalid refresh token');
+      throw new UnauthorizedException(ErrorMessages.USER.INVALID_REFRESH_TOKEN);
     }
 
     const tokens = await this.generateTokens(user);

@@ -117,12 +117,12 @@ export class AutomobileModel {
   })
   updateDateTime?: Date;
 
-  @OneToMany(() => AutomobileAd, ad => ad.modelId)
-  ads: AutomobileAd[];
+  @OneToMany(() => AutomobileAds, ad => ad.modelId)
+  ads: AutomobileAds[];
 }
 
 @Entity(Tables.AUTOMOBILE_ADS.TABLE)
-export class AutomobileAd {
+export class AutomobileAds {
   @PrimaryGeneratedColumn({ name: Tables.AUTOMOBILE_ADS.COLUMN.ID })
   id: number;
 
@@ -456,7 +456,7 @@ export class ApprovedAutomobileAdSnapshot {
   @CreateDateColumn({ name: Tables.APPROVED_AUTOMOBILE_AD_SNAPSHOTS.COLUMN.SNAPSHOT_DATE })
   snapshotDate: Date;
 
-  @ManyToOne(() => AutomobileAd, { onDelete: 'CASCADE' })
+  @ManyToOne(() => AutomobileAds, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'ad_id' })
-  ad: AutomobileAd;
+  ad: AutomobileAds;
 }
