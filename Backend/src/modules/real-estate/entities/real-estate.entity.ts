@@ -1,6 +1,7 @@
 import { CfgCategory } from '../../../modules/categories/entities/category.entity';
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { User } from '../../../auth/entities/auth.entity';
+import { City } from '../../locations/entities/location.entity';
 
 @Entity('cfg_states')
 export class State {
@@ -18,33 +19,6 @@ export class State {
 
   @OneToMany(() => City, city => city.state)
   cities: City[];
-}
-
-@Entity('cfg_cities')
-export class City {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column({ name: 'city_key', type: 'varchar', length: 255, nullable: true, unique: true })
-  cityKey: string;
-
-  @Column({ name: 'state_id', type: 'int', nullable: false })
-  stateId: number;
-
-  @Column({
-    name: 'create_datetime',
-    type: 'timestamp',
-    nullable: false,
-    default: () => 'CURRENT_TIMESTAMP',
-  })
-  createDatetime: Date;
-
-  @Column({ name: 'update_datetime', type: 'timestamp', nullable: true })
-  updateDatetime: Date;
-
-  @ManyToOne(() => State, state => state.cities, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'state_id' })
-  state: State;
 }
 
 @Entity('cfg_realestate_categories')

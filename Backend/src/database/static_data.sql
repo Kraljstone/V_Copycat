@@ -1,215 +1,3 @@
-SET session_replication_role = 'replica';
-
--- Truncate tables that have no dependencies first
-TRUNCATE TABLE
-    trn_automobile_ad_images,
-    trn_automobile_ad_attributes,
-    trn_automobile_ads,
-    trn_automobile_auditlogs,
-    approved_automobile_ad_snapshots,
-    cfg_real_estate_attributes,
-    RESTART IDENTITY;
-SET session_replication_role = 'origin';
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,expired_sponsored_ad)
-VALUES ('2015 TOYOTA COROLLA Gasoil', 'Toyota Corolla 2015 d'occasion en très bon état...', 200000, 1, 1, 1, 1, 9, CURRENT_TIMESTAMP, TRUE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, '2015-toyota-corolla',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,expired_sponsored_ad)
-VALUES ('jeep compass 2016 à vendre', 'Jeep Cherokee 2016 d'occasion en excellent état...', 200000, 1, 1, 2, 2, 6, CURRENT_TIMESTAMP, TRUE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'jeep-compass-2016-vendre',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('AVENSIS ATIKA D4d', 'Avensis d4d نظيفة استعمال شخصي مولاها بايعها ماهو مشكر عليها شي', 160000, 2, 1, 3, 3, 12, CURRENT_TIMESTAMP, TRUE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'avensis-atika-d4d');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('برلينكو نظيف', 'برلينكو نظيف مالو شي مرقم', 170000, 2, 1, 1, 2, 5, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, TRUE, FALSE, 'برلينكو-نظيف');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
-VALUES ('تويوتا أفانسيس نوفو عائلية', 'بيكام بريك مزالت طبيعية كاملة مديونة و مرقمة ترقيمها أجديد (ولاية)', 190000, 1, 1, 2, 2, 16, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'أفانسيس-نوفو',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,change_request)
-VALUES ('TOYOTA VERSO ARRIVAGE', 'بيكام بريك مزالت طبيعية كاملة مديونة و مرقمة ترقيمها أجديد (ولاية)', 190000, 1, 1, 2, 2, 18, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'toyota-verso-arrivage',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,rejected)
-VALUES ('Toyota RAV4 2008', 'تويوتا راف كات موديل 2008 مجمركة غير مرقمة بعد...', 420000, 1, 1, 1, 4, 2, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'toyota-rav4-2008',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,change_request)
-VALUES ('Toyota Corolla le 2018', 'للبيع: تويوتا راف 4 LE 2018 جديدة مجمركة...', 590000, 1, 1, 1, 1, 5, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'corolla-le-2018',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,rejected)
-VALUES ('راف 4 2005 اوراقها تامين مديورالها مكينه اريفاج ماله', 'راف 4 2005 اوراقها تامين مديورالها مكينه اريفاج مالها اشهر كليماتيزيرها فم حالتها كامل خاطي كومبلسير مبيوعه ابمليون و 550 للتواصل 49395450 واعليه واتساب', 155000, 1, 1, 1, 4, 8, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'راف-2005-4',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,rejected)
-VALUES ('كورولا طاش فرصة للبيع', 'تويوتا كورولا 2009 مستعملة بحالة جيدة. سيارة اقتصادية وموثوقة، مناسبة للاستخدام اليومي، وتتميز بكفاءة عالية في استهلاك الوقود. تمت صيانتها بانتظام لمزيد من المعلومات يرجى التواصل معنا.', 300000, 1, 1, 1, 3, 10, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'كورولا-طاش-فرصة-للبي',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('Tx 2012', 'Prado 2012 comme neuf matricule xxxxAV00', 590000, 1, 1, 1, 3, 2, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'prado-tx-2012');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('RAV4 2017 gasoil مالها شي داخله', 'RAV4 2017 gasoil مالها شي داخله', 760000, 1, 1, 1, 3, 2, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'rav4-2017-gasoile-325');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
-VALUES ('بيكام جديده و مبلوقه', 'فيه مضاض السرقة ردارات زر إغلاق النوافذ عن بعد الوثائق تامين', 250000, 1, 1, 2, 1, 1, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'بيكام-جديده-مبلوقه',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
-VALUES ('vendre ou échanger corolla 2012', 'Corolla 2012 Veuillez contacter via WhatsApp uniquement الرجاء التواصل عبر الواتساب فقط 36020261', 185000, 1, 1, 2, 1, 1, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'corolla-2012-echanger-ou-vendre',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('corolla 2020', 'corolla 2020 comme neuf', 380000, 1, 1, 2, 1, 14, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'corolla-2020-neuf');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
-VALUES ('Corolla 2018 bonne état', '2018 bonne etat comme neuf', 350000, 1, 1, 1, 1, 15, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'corolla-2018-neuf',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
-VALUES ('Toyota Avensis 2017', 'للبيع: تويوتا أفينسيس 2017 مستعملة بحالة ممتازة. تتميز هذه السيارة بمساحة داخلية واسعة، مع كفاءة عالية في استهلاك. خضعت لصيانة دورية وهي جاهزة للاستخدام الفوري. لمزيد من التفاصيل، يرجى التواصل معنا.', 210000, 1, 1, 1, 1, 16, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'avensis-2017-23',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
-VALUES ('2018 كورولا', 'كورولا 2018 بيظة ؤ فتحة كليماتيزير ديجيتال مافات اورقمت ملفها جديد ؤماكط حركت هون اتكول أربعه كاطعة 152000 كلم', 350000, 1, 1, 1, 1, 17, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, '2018-كورولا-2',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
-VALUES ('rav4 2012 comme neuf', 'هاذ rav4 2012 تبارك الله مزالت زينه، مواصفاته، بيتوه ستار وصالوه كوير وكراع من لوره وكاطع 151 وجاي فلكارب التالي وكحاله زين تبارك الله', 350000, 1, 1, 1, 4, 18, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'rv4-2012-comme-neuf-2',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
-VALUES ('Vente RAV4 2008 en très bon etat salon cuire et start', 'Ventre RAV4 2008 importe sur mon nom en très bon etat salon cuire Bouton start papiers complets assurance vignette , quittance commune RAV4 2008 ga63a ela 193 000 km etwa9etha tamin vignette assurance beledia 7aletha zeyne mahi tab3a lessamssara Salon cuire we start', 350000, 1, 1, 1, 4, 18, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'vente-rav4-2008-tres-bon-etat',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
-VALUES ('Corolla LE 2015 en bonne etat', 'باردة مكينتها زينة و بوتها زينة مبيوعة 3100000', 310000, 2, 1, 2, 2, 19, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'corolla-2015-comme-neuf',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
-VALUES ('Corolla 2013 en bon etat', 'Corolla 2013 en bon etat moteur et boit en tres bonne etat.', 170000, 2, 1, 1, 2, 20, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'corolla-2013-comme-neuf-moteur-boite-neuf',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
-VALUES ('Chevrolet cruze a vendre', 'للبيع سيارة من نوع شيفروليه كروز بحالة جيدة Chevrolet cruze a vendre en bon état', 150000, 2, 1, 1, 2, 20, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'chevrolet-cruze-a-vendre-315',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
-VALUES ('TOYOTA AVENSIS', 'للبيع: تويوتا أفينسيس مستعملة بحالة جيدة. أوراق مكتملة بطاقة رمادية بيومترك جاهزة للاستخدام الفوري. لمزيد من المعلومات رجاء تواصل على الرقم التالي: 33335063', 95000, 2, 1, 1, 2, 20, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'toyota-avensis-3333',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('سيارة للبيع', 'سيارة تويوتا آفنسيس قادمة من بلجيك المواصفات : جانت السبور ، 4 فيتر خمسة ابواب', 260000, 2, 1, 1, 2, 20, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'car-for-sale-253');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('Elantra 2017', 'هيونداي إلنترا 2017 مستعملة بحالة ممتازة. سيارة موثوقة ومريحة، مثالية للاستخدام اليومي. تمت صيانتها جيدًا وجاهزة للقيادة. لمزيد من التفاصيل، تواصل معنا Hyundai Elantra 2017 d'occasion en très bon état. Voiture fiable et confortable, parfaite pour la conduite quotidienne. Bien entretenue et prête à prendre la route. Contactez-nous pour plus de détails.', 250000, 2, 1, 1, 2, 20, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'elantra-2017-34');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('Mercedes 2016 cla en tré bon etat', 'Mercedes cla Moteur et boite en tré bon etat Climatiser central', 350000, 2, 1, 1, 2, 20, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'mercedes-2016-cla-en-tres-bon-etat');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('هيليكس اوروبية', 'محرك اريفاج ماشاء الله والحركة قوية فتبارك الله', 660000, 1, 1, 2, 2, 12, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, '2014-هيليكس-اوروبية');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('RAV4 2008', 'Je vend mon RAV4 2008 Arrivage en très bonne état dédouaner pas encore Matricule', 370000, 1, 1, 1, 4, 12, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'rav4-2008-34');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('Toyota Corolla Le 2018', 'للبيع: تويوتا كورولا LE 2018 مستعملة بحالة ممتازة. تم استخدامها شخصيًا لمدة شهرين فقط، ثم سافر المالك إلى الخارج. تتميز بكفاءة عالية في استهلاك الوقود وأداء موثوق، مما يجعلها مثالية للتنقل اليومي. السيارة خضعت لصيانة دورية وهي جاهزة للاستخدام الفوري. أوراق مكتملة لمزيد من المعلومات، يرجى التواصل معنا على الواتساب: 42041414', 365000, 1, 1, 1, 2, 12, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'le-2018-2346');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('TOYOTA TX en excellent état FULL OPTION تويوتا فول اوب', 'Vends TOYOTA TX en excellent état FULL OPTION pratiquement immobilisée depuis son acquisition بيع TOYOTA TX بحالة ممتازة FULL OPTIO معطلة غالبا منذ شرائها لتواصل على الواتساب: 46739911', 1090000, 1, 1, 1, 1, 12, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'prado-tx-bonne-etat-full-options');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('Chevrolet Sonic Lt 2013', 'فرص زين شفيرلى حركتها جيد AB07 WhatsApp: 44490348 CONTACT:22868525 Chevrolet Sonic Lt 2013', 130000, 1, 1, 2, 3, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'chevrolet-sonic-lt-2013');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('Toyota Corolla le 2020', 'فرص زين شفيرلى حركتها جيد AB07 WhatsApp: 44490348 CONTACT:22868525 Chevrolet Sonic Lt 2013', 530000, 2, 1, 1, 3, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'corolla-le-2020-32e');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('Hyundai elantra 2012 en tout bonne santé pris négociab', 'للبيع: هيونداي إلنترا 2012 مستعملة بحالة جيدة. تتميز بكفاءة عالية في استهلاك الوقود وتصميم أنيق مع أداء موثوق، مما يجعلها مثالية للاستخدام اليومي. تمت صيانتها بشكل منتظم وهي جاهزة للاستخدام الفوري. لمزيد من التفاصيل، يرجى التواصل معنا.', 130000, 1, 1, 3, 2, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'hyundai-elantra-2012-en-tout-bonne-santé-pris-négociab');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('Toyota RAV 4 2008 D4-D', 'Toyota Rav 4 2.2 D-4d 4WD 8 CV 136 CH. Modèle 2008 première main. Clim automatique bi-zones Rétroviseurs électriques Volant multifonction Régulateur de vitesse Carrosserie extérieure et intérieure en bon état Mécanique parfaite, rien à prévoir . Véhicule rentré en Mauritanie ce 01 octobre 2024 Dedouané non immatriculé. volet douane fait', 380000, 2, 1, 1, 4, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'rav4-2008-d4d-234');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('Chevrolet 2015 automatique', 'Chevrolet 2015 automatique Moteur et boite en bon etat', 150000, 1, 1, 2, 3, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'chevrolet-2015-235');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('Rav 4 2015 diesel en tré bon etat', 'Rav 4 2015 gasoil Moteur en exellent etat Caise dorigine Clim digital Salon propre', 395000, 1, 1, 1, 4, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'rav4-2015-comme-neuf-jdide');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('RAV4 2008 D4D Arrivage', 'Je vend mon RAV4 2008 Arrivage en très bonne état dédouaner pas encore Matricule', 380000, 2, 1, 1, 4, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'rav4-2008-arrivage-comme-neuf-32');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('سيار rav4 2008 مافتت اورقمت', 'صييار rav4. 2008 اجديد امنكز اعل ابور اله الا 15 يوم', 420000, 2, 1, 1, 4, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'rav4-2008-36-sdg');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('Jeep automatique 2016 en bon etat', 'Jeep grand cherokee 2016 Moteur et boite en bon etat Clim central Suspention en bon etat', 640000, 2, 1, 3, 3, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'jeep-2016-2352-sdsg-23');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('كورولا LE 2018 ملفها فيه شهرين', 'السلام عليكم عندنا هذي كورولا LE 2018 مديونه ميهي مورقمه ملفها فيه شهرين گاطعه 66 ألف شوكها عادي ماشاء الله للتواصل : 49163024', 290000, 2, 1, 1, 1, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'le-2018-deux-mois-comme-neuf0');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('دروكبا نضيفة', 'دروكبا نضيفة', 220000, 2, 1, 1, 1, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'دروكبا-نضيفة');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('corolla silver', 'Corolla silver ( Grande opportunité) فرصة كرولا سلفر له 3 داخلة مكينته سغير كَاطعة 200 ومزالت الجديد تواقطه تامين و حالته مكتملة من جميع النواحي Elle na que 3 jours à Nouakchott, et son dossier est nouveau Kilométrage 200mil', 340000, 2, 1, 1, 2, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'corolla-silver-2006-wags');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('Vente occasion', 'Hilux en bon etat ', 470000, 2, 1, 2, 3, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'hilux-bon-etat-2014');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('سياره جيد جدا', 'سياره مزالت بحالة جيده جدا و مكيفها شغال و منظرها جميل و مكتملة الأوراق La voiture est encore en très bon état, la climatisation fonctionne, elle est magnifique et les papiers sont complets', 290000, 2, 1, 2, 3, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, '2015-corolla-neuf-comme-jdide');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('MERCEDES S 320 CLASS CDI', 'مرسيدس S 320 CDI موديل 2008 مستعملة بحالة ممتازة. تتميز هذه السيارة الفاخرة بتصميم أنيق وأداء قوي، مع محرك ديزل يوفر كفاءة عالية في استهلاك الوقود. تمت صيانتها بشكل دوري وهي جاهزة للاستخدام الفوري. لمزيد من التفاصيل يرجى التواصل معنا. S 320 CDI 2008 d'occasion en excellent état. Cette voiture de luxe offre un design élégant et des performances puissantes, avec un moteur diesel garantissant une grande efficacité énergétique. Entretien régulier, prête à l'emploi. Contactez-nous pour plus d'informations. ', 432000, 2, 1, 3, 1, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'mercedes-s-320-class-cdi');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
-VALUES ('Hyundai ix35 À vendre', 'Hyundai ix35 avec papiers en règles', 260000, 1, 1, 3, 2, 12, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'hyundai-ix35-2013');
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
-VALUES ('Peugeot GT Line 1.2 d'occasion en excellent état', 'Peugeot GT Line 1.2 d'occasion en excellent état. Voiture élégante et sportive, offrant un bon mélange de performance et d'efficacité. Intérieur soigné et bien équipé. Contactez-nous pour plus d'infos. CONTACT WHATSAPP: +33629136828 NUMERO:38831900', 410000, 2, 1, 3, 3, 9, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'hyundai-ix35-2013',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
-VALUES ('Jeep Grand Cherokee Gasoil', 'Jeep Grand Cherokee Gasoil', 260000, 1, 1, 3, 2, 12, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'jeep-grand-cherokee',true);
-
-
-INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
-VALUES ('Chemss', 'Tout neuf', 240000, 1, 1, 3, 2, 12, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'chemss-2323dsf',true);
-
 TRUNCATE TABLE cfg_categories;
 
 INSERT INTO cfg_categories (module_key, image_url, description, create_datetime, update_datetime)
@@ -310,6 +98,218 @@ INSERT INTO cfg_cities (city_key, state_id) VALUES
     ('CITY_ARAFAT', 15),
     ('CITY_EL_MINA', 15),
     ('CITY_RIYADH', 15);
+
+
+SET session_replication_role = 'replica';
+
+-- Truncate tables that have no dependencies first
+TRUNCATE TABLE
+    trn_automobile_ad_images,
+    trn_automobile_ad_attributes,   
+    trn_automobile_ads,
+    trn_automobile_auditlogs,
+    approved_automobile_ad_snapshots
+    RESTART IDENTITY;
+SET session_replication_role = 'origin';
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,expired_sponsored_ad)
+VALUES ('2015 TOYOTA COROLLA Gasoil', 'Toyota Corolla 2015 d’occasion en très bon état...', 200000, 1, 1, 1, 1, 9, CURRENT_TIMESTAMP, TRUE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, '2015-toyota-corolla',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,expired_sponsored_ad)
+VALUES ('jeep compass 2016 à vendre', 'Jeep Cherokee 2016 d’occasion en excellent état...', 200000, 1, 1, 2, 2, 6, CURRENT_TIMESTAMP, TRUE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'jeep-compass-2016-vendre',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('AVENSIS ATIKA D4d', 'Avensis d4d نظيفة استعمال شخصي مولاها بايعها ماهو مشكر عليها شي', 160000, 2, 1, 3, 3, 12, CURRENT_TIMESTAMP, TRUE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'avensis-atika-d4d');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('برلينكو نظيف', 'برلينكو نظيف مالو شي مرقم', 170000, 2, 1, 1, 2, 5, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, TRUE, FALSE, 'برلينكو-نظيف');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
+VALUES ('تويوتا أفانسيس نوفو عائلية', 'بيكام بريك مزالت طبيعية كاملة مديونة و مرقمة ترقيمها أجديد (ولاية)', 190000, 1, 1, 2, 2, 16, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'أفانسيس-نوفو',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,change_request)
+VALUES ('TOYOTA VERSO ARRIVAGE', 'بيكام بريك مزالت طبيعية كاملة مديونة و مرقمة ترقيمها أجديد (ولاية)', 190000, 1, 1, 2, 2, 18, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'toyota-verso-arrivage',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,rejected)
+VALUES ('Toyota RAV4 2008', 'تويوتا راف كات موديل 2008 مجمركة غير مرقمة بعد...', 420000, 1, 1, 1, 4, 2, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'toyota-rav4-2008',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,change_request)
+VALUES ('Toyota Corolla le 2018', 'للبيع: تويوتا راف 4 LE 2018 جديدة مجمركة...', 590000, 1, 1, 1, 1, 5, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'corolla-le-2018',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,rejected)
+VALUES ('راف 4 2005 اوراقها تامين مديورالها مكينه اريفاج ماله', 'راف 4 2005 اوراقها تامين مديورالها مكينه اريفاج مالها اشهر كليماتيزيرها فم حالتها كامل خاطي كومبلسير مبيوعه ابمليون و 550 للتواصل 49395450 واعليه واتساب', 155000, 1, 1, 1, 4, 8, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'راف-2005-4',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,rejected)
+VALUES ('كورولا طاش فرصة للبيع', 'تويوتا كورولا 2009 مستعملة بحالة جيدة. سيارة اقتصادية وموثوقة، مناسبة للاستخدام اليومي، وتتميز بكفاءة عالية في استهلاك الوقود. تمت صيانتها بانتظام لمزيد من المعلومات يرجى التواصل معنا.', 300000, 1, 1, 1, 3, 10, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'كورولا-طاش-فرصة-للبي',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('Tx 2012', 'Prado 2012 comme neuf matricule xxxxAV00', 590000, 1, 1, 1, 3, 2, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'prado-tx-2012');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('RAV4 2017 gasoil مالها شي داخله', 'RAV4 2017 gasoil مالها شي داخله', 760000, 1, 1, 1, 3, 2, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'rav4-2017-gasoile-325');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
+VALUES ('بيكام جديده و مبلوقه', 'فيه مضاض السرقة ردارات زر إغلاق النوافذ عن بعد الوثائق تامين', 250000, 1, 1, 2, 1, 1, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'بيكام-جديده-مبلوقه',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
+VALUES ('vendre ou échanger corolla 2012', 'Corolla 2012 Veuillez contacter via WhatsApp uniquement الرجاء التواصل عبر الواتساب فقط 36020261', 185000, 1, 1, 2, 1, 1, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'corolla-2012-echanger-ou-vendre',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('corolla 2020', 'corolla 2020 comme neuf', 380000, 1, 1, 2, 1, 14, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'corolla-2020-neuf');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
+VALUES ('Corolla 2018 bonne état', '2018 bonne etat comme neuf', 350000, 1, 1, 1, 1, 15, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'corolla-2018-neuf',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
+VALUES ('Toyota Avensis 2017', 'للبيع: تويوتا أفينسيس 2017 مستعملة بحالة ممتازة. تتميز هذه السيارة بمساحة داخلية واسعة، مع كفاءة عالية في استهلاك. خضعت لصيانة دورية وهي جاهزة للاستخدام الفوري. لمزيد من التفاصيل، يرجى التواصل معنا.', 210000, 1, 1, 1, 1, 16, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'avensis-2017-23',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
+VALUES ('2018 كورولا', 'كورولا 2018 بيظة ؤ فتحة كليماتيزير ديجيتال مافات اورقمت ملفها جديد ؤماكط حركت هون اتكول أربعه كاطعة 152000 كلم', 350000, 1, 1, 1, 1, 17, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, '2018-كورولا-2',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
+VALUES ('rav4 2012 comme neuf', 'هاذ rav4 2012 تبارك الله مزالت زينه، مواصفاته، بيتوه ستار وصالوه كوير وكراع من لوره وكاطع 151 وجاي فلكارب التالي وكحاله زين تبارك الله', 350000, 1, 1, 1, 4, 18, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'rv4-2012-comme-neuf-2',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
+VALUES ('Vente RAV4 2008 en très bon etat salon cuire et start', 'Ventre RAV4 2008 importe sur mon nom en très bon etat salon cuire Bouton start papiers complets assurance vignette , quittance commune RAV4 2008 ga63a ela 193 000 km etwa9etha tamin vignette assurance beledia 7aletha zeyne mahi tab3a lessamssara Salon cuire we start', 350000, 1, 1, 1, 4, 18, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'vente-rav4-2008-tres-bon-etat',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
+VALUES ('Corolla LE 2015 en bonne etat', 'باردة مكينتها زينة و بوتها زينة مبيوعة 3100000', 310000, 2, 1, 2, 2, 19, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'corolla-2015-comme-neuf',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
+VALUES ('Corolla 2013 en bon etat', 'Corolla 2013 en bon etat moteur et boit en tres bonne etat.', 170000, 2, 1, 1, 2, 20, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'corolla-2013-comme-neuf-moteur-boite-neuf',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
+VALUES ('Chevrolet cruze a vendre', 'للبيع سيارة من نوع شيفروليه كروز بحالة جيدة Chevrolet cruze a vendre en bon état', 150000, 2, 1, 1, 2, 20, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'chevrolet-cruze-a-vendre-315',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
+VALUES ('TOYOTA AVENSIS', 'للبيع: تويوتا أفينسيس مستعملة بحالة جيدة. أوراق مكتملة بطاقة رمادية بيومترك جاهزة للاستخدام الفوري. لمزيد من المعلومات رجاء تواصل على الرقم التالي: 33335063', 95000, 2, 1, 1, 2, 20, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'toyota-avensis-3333',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('سيارة للبيع', 'سيارة تويوتا آفنسيس قادمة من بلجيك المواصفات : جانت السبور ، 4 فيتر خمسة ابواب', 260000, 2, 1, 1, 2, 20, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'car-for-sale-253');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('Elantra 2017', 'هيونداي إلنترا 2017 مستعملة بحالة ممتازة. سيارة موثوقة ومريحة، مثالية للاستخدام اليومي. تمت صيانتها جيدًا وجاهزة للقيادة. لمزيد من التفاصيل، تواصل معنا Hyundai Elantra 2017 d’occasion en très bon état. Voiture fiable et confortable, parfaite pour la conduite quotidienne. Bien entretenue et prête à prendre la route. Contactez-nous pour plus de détails.', 250000, 2, 1, 1, 2, 20, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'elantra-2017-34');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('Mercedes 2016 cla en tré bon etat', 'Mercedes cla Moteur et boite en tré bon etat Climatiser central', 350000, 2, 1, 1, 2, 20, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'mercedes-2016-cla-en-tres-bon-etat');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('هيليكس اوروبية', 'محرك اريفاج ماشاء الله والحركة قوية فتبارك الله', 660000, 1, 1, 2, 2, 12, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, '2014-هيليكس-اوروبية');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('RAV4 2008', 'Je vend mon RAV4 2008 Arrivage en très bonne état dédouaner pas encore Matricule', 370000, 1, 1, 1, 4, 12, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'rav4-2008-34');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('Toyota Corolla Le 2018', 'للبيع: تويوتا كورولا LE 2018 مستعملة بحالة ممتازة. تم استخدامها شخصيًا لمدة شهرين فقط، ثم سافر المالك إلى الخارج. تتميز بكفاءة عالية في استهلاك الوقود وأداء موثوق، مما يجعلها مثالية للتنقل اليومي. السيارة خضعت لصيانة دورية وهي جاهزة للاستخدام الفوري. أوراق مكتملة لمزيد من المعلومات، يرجى التواصل معنا على الواتساب: 42041414', 365000, 1, 1, 1, 2, 12, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'le-2018-2346');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('TOYOTA TX en excellent état FULL OPTION تويوتا فول اوب', 'Vends TOYOTA TX en excellent état FULL OPTION pratiquement immobilisée depuis son acquisition بيع TOYOTA TX بحالة ممتازة FULL OPTIO معطلة غالبا منذ شرائها لتواصل على الواتساب: 46739911', 1090000, 1, 1, 1, 1, 12, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'prado-tx-bonne-etat-full-options');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('Chevrolet Sonic Lt 2013', 'فرص زين شفيرلى حركتها جيد AB07 WhatsApp: 44490348 CONTACT:22868525 Chevrolet Sonic Lt 2013', 130000, 1, 1, 2, 3, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'chevrolet-sonic-lt-2013');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('Toyota Corolla le 2020', 'فرص زين شفيرلى حركتها جيد AB07 WhatsApp: 44490348 CONTACT:22868525 Chevrolet Sonic Lt 2013', 530000, 2, 1, 1, 3, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'corolla-le-2020-32e');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('Hyundai elantra 2012 en tout bonne santé pris négociab', 'للبيع: هيونداي إلنترا 2012 مستعملة بحالة جيدة. تتميز بكفاءة عالية في استهلاك الوقود وتصميم أنيق مع أداء موثوق، مما يجعلها مثالية للاستخدام اليومي. تمت صيانتها بشكل منتظم وهي جاهزة للاستخدام الفوري. لمزيد من التفاصيل، يرجى التواصل معنا.', 130000, 1, 1, 3, 2, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'hyundai-elantra-2012-en-tout-bonne-santé-pris-négociab');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('Toyota RAV 4 2008 D4-D', 'Toyota Rav 4 2.2 D-4d 4WD 8 CV 136 CH. Modèle 2008 première main. Clim automatique bi-zones Rétroviseurs électriques Volant multifonction Régulateur de vitesse Carrosserie extérieure et intérieure en bon état Mécanique parfaite, rien à prévoir . Véhicule rentré en Mauritanie ce 01 octobre 2024 Dedouané non immatriculé. volet douane fait', 380000, 2, 1, 1, 4, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'rav4-2008-d4d-234');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('Chevrolet 2015 automatique', 'Chevrolet 2015 automatique Moteur et boite en bon etat', 150000, 1, 1, 2, 3, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'chevrolet-2015-235');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('Rav 4 2015 diesel en tré bon etat', 'Rav 4 2015 gasoil Moteur en exellent etat Caise dorigine Clim digital Salon propre', 395000, 1, 1, 1, 4, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'rav4-2015-comme-neuf-jdide');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('RAV4 2008 D4D Arrivage', 'Je vend mon RAV4 2008 Arrivage en très bonne état dédouaner pas encore Matricule', 380000, 2, 1, 1, 4, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'rav4-2008-arrivage-comme-neuf-32');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('سيار rav4 2008 مافتت اورقمت', 'صييار rav4. 2008 اجديد امنكز اعل ابور اله الا 15 يوم', 420000, 2, 1, 1, 4, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'rav4-2008-36-sdg');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('Jeep automatique 2016 en bon etat', 'Jeep grand cherokee 2016 Moteur et boite en bon etat Clim central Suspention en bon etat', 640000, 2, 1, 3, 3, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'jeep-2016-2352-sdsg-23');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('كورولا LE 2018 ملفها فيه شهرين', 'السلام عليكم عندنا هذي كورولا LE 2018 مديونه ميهي مورقمه ملفها فيه شهرين گاطعه 66 ألف شوكها عادي ماشاء الله للتواصل : 49163024', 290000, 2, 1, 1, 1, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'le-2018-deux-mois-comme-neuf0');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('دروكبا نضيفة', 'دروكبا نضيفة', 220000, 2, 1, 1, 1, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'دروكبا-نضيفة');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('corolla silver', 'Corolla silver ( Grande opportunité) فرصة كرولا سلفر له 3 داخلة مكينته سغير كَاطعة 200 ومزالت الجديد تواقطه تامين و حالته مكتملة من جميع النواحي Elle na que 3 jours à Nouakchott, et son dossier est nouveau Kilométrage 200mil', 340000, 2, 1, 1, 2, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'corolla-silver-2006-wags');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('Vente occasion', 'Hilux en bon etat ', 470000, 2, 1, 2, 3, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'hilux-bon-etat-2014');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('سياره جيد جدا', 'سياره مزالت بحالة جيده جدا و مكيفها شغال و منظرها جميل و مكتملة الأوراق La voiture est encore en très bon état, la climatisation fonctionne, elle est magnifique et les papiers sont complets', 290000, 2, 1, 2, 3, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, '2015-corolla-neuf-comme-jdide');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('MERCEDES S 320 CLASS CDI', 'مرسيدس S 320 CDI موديل 2008 مستعملة بحالة ممتازة. تتميز هذه السيارة الفاخرة بتصميم أنيق وأداء قوي، مع محرك ديزل يوفر كفاءة عالية في استهلاك الوقود. تمت صيانتها بشكل دوري وهي جاهزة للاستخدام الفوري. لمزيد من التفاصيل يرجى التواصل معنا. S 320 CDI 2008 d’occasion en excellent état. Cette voiture de luxe offre un design élégant et des performances puissantes, avec un moteur diesel garantissant une grande efficacité énergétique. Entretien régulier, prête à l’emploi. Contactez-nous pour plus d’informations. ', 432000, 2, 1, 3, 1, 15, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'mercedes-s-320-class-cdi');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug)
+VALUES ('Hyundai ix35 À vendre', 'Hyundai ix35 avec papiers en règles', 260000, 1, 1, 3, 2, 12, CURRENT_TIMESTAMP, FALSE, TRUE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'hyundai-ix35-2013');
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
+VALUES ('Peugeot GT Line 1.2 d’occasion en excellent état', 'Peugeot GT Line 1.2 d’occasion en excellent état. Voiture élégante et sportive, offrant un bon mélange de performance et d’efficacité. Intérieur soigné et bien équipé. Contactez-nous pour plus d’infos. CONTACT WHATSAPP: +33629136828 NUMERO:38831900', 410000, 2, 1, 3, 3, 9, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'hyundai-ix35-2013',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
+VALUES ('Jeep Grand Cherokee Gasoil', 'Jeep Grand Cherokee Gasoil', 260000, 1, 1, 3, 2, 12, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'jeep-grand-cherokee',true);
+
+
+INSERT INTO trn_automobile_ads (title, description, price, user_id, category_id, make_id, model_id, city_id, create_datetime, is_in_review, is_live, is_paid, is_archived, last_update_datetime, is_deleted, is_sold, slug,submitted)
+VALUES ('Chemss', 'Tout neuf', 240000, 1, 1, 3, 2, 12, CURRENT_TIMESTAMP, FALSE, FALSE, FALSE, FALSE, CURRENT_TIMESTAMP, FALSE, FALSE, 'chemss-2323dsf',true);
 
 
 INSERT INTO trn_automobile_ad_images (ad_id, image_url, is_primary, order_number, upload_datetime)
@@ -1432,46 +1432,3 @@ VALUES (2, 2, 250.00, CURRENT_TIMESTAMP + INTERVAL '60 days', 2, TRUE),
        (3, 2, 150.00, CURRENT_TIMESTAMP + INTERVAL '20 days', 1, TRUE),
        (5, 2, 250.00, CURRENT_TIMESTAMP + INTERVAL '60 days', 2, TRUE),
        (4, 1, 250.00, CURRENT_TIMESTAMP + INTERVAL '60 days', 2, TRUE);
-
-
-INSERT INTO cfg_realestate_categories (module_id, category_key)
-VALUES (3, 'RESIDENTIAL_CATEGORY_KEY'),
-       (3, 'COMMERCIAL_CATEGORY_KEY');
-
-
-INSERT INTO cfg_real_estate_attributes (category_id, att_key, is_multi_choice, is_required, is_feature)
-VALUES (1, 'ROOMS_ATTRIBUTE_KEY', FALSE, TRUE, false),
-       (1, 'BATHROOMS_ATTRIBUTE_KEY', FALSE, TRUE, false),
-       (1, 'BALCONIES_ATTRIBUTE_KEY', FALSE, FALSE, false),
-       (1, 'HALLS_ATTRIBUTE_KEY', FALSE, FALSE, false),
-       (1, 'SECURITY_CAMERA_FEATURE', FALSE, FALSE, true),
-       (1, 'FURNISHED_FEATURE', FALSE, FALSE, true),
-       (1, 'GARAGE_FEATURE', FALSE, FALSE, true),
-       (1, 'RENT_TYPE_ATTRIBUTE', TRUE, FALSE, false);
-
-INSERT INTO cfg_realestate_options (att_id, att_option_key)
-VALUES (8, 'HOURLY_RENT_OPTION'),
-       (8, 'DAILY_RENT_OPTION'),
-       (8, 'WEEKLY_RENT_OPTION'),
-       (8, 'MONTHLY_RENT_OPTION'),
-       (8, 'YEARLY_RENT_OPTION');
-
-INSERT INTO trn_real_estate_ads (title, description, price, user_id, is_in_review, is_live, is_archived,
-                                 review_start_datetime,
-                                 approved_datetime, archived_datetime, live_datetime, last_update_datetime, area_size,
-                                 closet_landmark, street_size, has_land_title, is_on_corner, latitude, longitude,
-                                 city_id, is_for_rent, is_for_sale, slug, category_id, submitted, is_sold
-
-INSERT INTO trn_realestate_ad_attributes (ad_id, att_id, option_id, custom_value, has_custom_value)
-VALUES (1, 1, NULL, '2', TRUE),
-       (2, 1, NULL, '4', TRUE),
-       (3, 1, NULL, '5', TRUE),
-       (4, 1, NULL, '1', TRUE),
-       (1, 2, NULL, '3', TRUE),
-       (2, 2, NULL, '4', TRUE),
-       (3, 2, NULL, '7', TRUE),
-       (4, 2, NULL, '8', TRUE),
-       (1, 3, NULL, '2', TRUE),
-       (2, 3, NULL, '1', TRUE),
-       (3, 3, NULL, '6', TRUE),
-       (4, 3, NULL, '2', TRUE);

@@ -71,6 +71,10 @@ export class User {
   @Expose()
   refreshToken: string;
 
+  @Column({ type: 'varchar', length: 255, nullable: true, name: Tables.USERS.COLUMN.ACCESS_TOKEN })
+  @Expose()
+  accessToken: string;
+
   @CreateDateColumn({
     type: 'timestamp',
     name: Tables.USERS.COLUMN.CREATED_AT,

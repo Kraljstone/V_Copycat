@@ -31,6 +31,7 @@ const databaseConfig: DataSourceOptions = {
   synchronize: false,
   migrationsTableName: 'migrations',
   migrationsTransactionMode: 'all',
+  logging: ['error', 'warn', 'migration'],
 };
 
 // Create and export the DataSource instance

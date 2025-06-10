@@ -5,7 +5,8 @@ import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ErrorMessages } from 'src/utils/error-messages';
+import { ErrorMessages } from 'src/utils/constants';
+
 @Injectable()
 export class AuthService implements IAuthService {
   private readonly logger = new Logger(AuthService.name);
@@ -17,37 +18,22 @@ export class AuthService implements IAuthService {
   ) {}
 
   async registerUser(userDetails: RegisterUserParams) {
-    try {
-      // Check if user with this phone number already exists
-      const existingUser = await this.userRepository.findOne({
-        where: { phoneNumber: userDetails.phoneNumber },
-      });
+    // Check if user with this phone number already exists
+    const hashedPassword = await bcrypt.hash(userDetails.password, 10);
 
-      if (existingUser) {
-        throw new ConflictException(ErrorMessages.USER.PHONE_NUMBER_ALREADY_EXISTS);
-      }
+    const user = this.userRepository.create({
+      ...userDetails,
+      hashPassword: hashedPassword,
+      username: userDetails.phoneNumber,
+      createdAt: new Date(),
+    });
+    const savedUser = await this.userRepository.save(user);
+    const tokens = await this.generateTokens(savedUser);
 
-      const hashedPassword = await bcrypt.hash(userDetails.password, 10);
-      const user = this.userRepository.create({
-        ...userDetails,
-        hashPassword: hashedPassword,
-        username: userDetails.phoneNumber,
-        createdAt: new Date(),
-      });
-      const savedUser = await this.userRepository.save(user);
-
-      const tokens = await this.generateTokens(savedUser);
-      return {
-        user: savedUser,
-        ...tokens,
-      };
-    } catch (error) {
-      this.logger.error(`Error creating user: ${error.message}`, error.stack);
-      if (error instanceof ConflictException) {
-        throw error;
-      }
-      throw new ConflictException(ErrorMessages.USER.PHONE_NUMBER_ALREADY_EXISTS);
-    }
+    return {
+      ...savedUser,
+      ...tokens,
+    };
   }
 
   async validateUser({ phoneNumber, password }: LoginUserParams) {
@@ -65,8 +51,9 @@ export class AuthService implements IAuthService {
     }
 
     const tokens = await this.generateTokens(user);
+
     return {
-      user,
+      ...user,
       ...tokens,
     };
   }
@@ -80,11 +67,7 @@ export class AuthService implements IAuthService {
       throw new UnauthorizedException(ErrorMessages.USER.INVALID_REFRESH_TOKEN);
     }
 
-    const tokens = await this.generateTokens(user);
-    return {
-      user,
-      ...tokens,
-    };
+    return user;
   }
 
   private async generateTokens(user: User) {

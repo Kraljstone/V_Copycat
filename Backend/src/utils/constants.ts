@@ -54,6 +54,7 @@ export const Tables = {
       ACCOUNT_CREATION_DATETIME: 'account_creation_datetime',
       ACCOUNT_VERIFIED: 'account_verified',
       PHONE_NUMBER: 'phone_number',
+      ACCESS_TOKEN: 'access_token',
       REFRESH_TOKEN: 'refresh_token',
       CREATED_AT: 'created_at',
       UPDATED_AT: 'updated_at',
@@ -263,10 +264,30 @@ export const Tables = {
 
 export enum Database {
   DATA_SOURCE = 'DATA_SOURCE',
+  UNIQUE_VIOLATION = '23505',
 }
 
 export enum Strategies {
   JWT_REFRESH = 'jwt-refresh',
+  LOCAL = 'local',
+  JWT = 'jwt',
+}
+
+export enum Jwt {
+  INVALID_TOKEN = 'JsonWebTokenError',
+  EXPIRED_TOKEN = 'TokenExpiredError',
 }
 
 export const REFRESH_MATERIALIZED_VIEW = 'REFRESH MATERIALIZED VIEW';
+
+export const ErrorMessages = {
+  USER: {
+    PHONE_NUMBER_ALREADY_EXISTS: 'A user with this phone number already exists',
+    INVALID_CREDENTIALS: 'Invalid credentials',
+    INVALID_REFRESH_TOKEN: 'Invalid refresh token',
+  },
+
+  AUTOMOBILE: {
+    AUTOMOBILE_NOT_FOUND: 'Automobile ad not found',
+  },
+};

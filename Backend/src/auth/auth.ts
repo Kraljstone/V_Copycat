@@ -1,5 +1,4 @@
 import { User } from './entities/auth.entity';
-import { AuthResponseDto } from './dto/auth-response.dto';
 
 export interface RegisterUserParams {
   fullname: string;
@@ -22,10 +21,8 @@ export interface Tokens {
   refreshToken: string;
 }
 
-export type AuthResponse = AuthResponseDto;
-
 export interface IAuthService {
-  registerUser(userDetails: RegisterUserParams): Promise<AuthResponse>;
-  validateUser(userDetails: LoginUserParams): Promise<AuthResponse>;
-  refreshTokens(userId: number, refreshToken: string): Promise<AuthResponse>;
+  registerUser(userDetails: RegisterUserParams): Promise<User>;
+  validateUser(userDetails: LoginUserParams): Promise<User>;
+  refreshTokens(userId: number, refreshToken: string): Promise<User>;
 }
