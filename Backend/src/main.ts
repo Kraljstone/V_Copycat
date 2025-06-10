@@ -6,6 +6,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as compression from 'compression';
 import helmet from 'helmet';
 import { Logger } from '@nestjs/common';
+import * as passport from 'passport';
 
 const bootstrap = async () => {
   const logger = new Logger('Bootstrap');
@@ -33,6 +34,8 @@ const bootstrap = async () => {
       forbidNonWhitelisted: true,
     }),
   );
+
+  app.use(passport.initialize());
 
   // Swagger configuration
   const config = new DocumentBuilder()

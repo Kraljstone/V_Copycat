@@ -1,4 +1,4 @@
-import { DataSourceOptions } from 'typeorm';
+import { DataSource, DataSourceOptions } from 'typeorm';
 import * as path from 'path';
 import { config } from 'dotenv';
 
@@ -13,8 +13,8 @@ for (const envVar of requiredEnvVars) {
   }
 }
 
-// Database configuration
-export const databaseConfig: DataSourceOptions = {
+// Database configuration options
+const databaseConfig: DataSourceOptions = {
   type: 'postgres',
   host: process.env.DB_HOST,
   port: parseInt(process.env.DB_PORT),
@@ -26,5 +26,16 @@ export const databaseConfig: DataSourceOptions = {
     path.join(__dirname, '../auth/**/*.entity{.ts,.js}'),
     path.join(__dirname, '../typeorm/**/*.entity{.ts,.js}'),
   ],
-  synchronize: true,
+  migrations: [path.join(__dirname, '../migrations/*{.ts,.js}')],
+  migrationsRun: true,
+  synchronize: false,
+  migrationsTableName: 'migrations',
+  migrationsTransactionMode: 'all',
+  logging: ['error', 'warn', 'migration'],
 };
+
+// Create and export the DataSource instance
+export const AppDataSource = new DataSource(databaseConfig);
+
+// Export the config for other uses
+export { databaseConfig };

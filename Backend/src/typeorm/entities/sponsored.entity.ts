@@ -1,5 +1,5 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { Tables } from 'src/utils/constants';
+import { Tables } from '../../utils/constants';
 
 @Entity(Tables.SPONSORED.TABLE)
 export class Sponsored {

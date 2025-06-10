@@ -23,6 +23,10 @@ export const Routes = {
     LOGIN: 'login',
     REFRESH: 'refresh',
   },
+
+  REAL_ESTATE: {
+    ROUTE: 'real-estate',
+  },
 };
 
 export enum Services {
@@ -36,6 +40,7 @@ export enum Services {
   SPONSORED_REPOSITORY = 'SPONSORED_REPOSITORY',
   USERS_REPOSITORY = 'USERS_REPOSITORY',
   HOME_SERVICE = 'HOME_SERVICE',
+  REAL_ESTATE_SERVICE = 'REAL_ESTATE_SERVICE',
 }
 
 export const Tables = {
@@ -49,6 +54,7 @@ export const Tables = {
       ACCOUNT_CREATION_DATETIME: 'account_creation_datetime',
       ACCOUNT_VERIFIED: 'account_verified',
       PHONE_NUMBER: 'phone_number',
+      ACCESS_TOKEN: 'access_token',
       REFRESH_TOKEN: 'refresh_token',
       CREATED_AT: 'created_at',
       UPDATED_AT: 'updated_at',
@@ -119,20 +125,8 @@ export const Tables = {
       CHANGE_REQUEST: 'change_request',
     },
 
-    VIEW: {
-      TABLE: 'automobileLatestAdsView',
-      COLUMN: {
-        ID: 'auto_ad_id',
-        CREATE_DATETIME: 'create_datetime',
-        CATEGORY_KEY: 'category_key',
-        CATEGORY_ID: 'automobile_cat_id',
-        SELLER_NAME: 'sellerName',
-        SELLER_ID: 'sellerId',
-        SELLER_IMAGE_URL: 'sellerImageUrl',
-        VIEW_COUNT: 'viewCount',
-        IMAGE_URL: 'imageUrl',
-        PICTURE_COUNT: 'pictureCount',
-      },
+    VIEWS: {
+      NAME: 'vw_automobile_ads',
     },
   },
 
@@ -260,12 +254,40 @@ export const Tables = {
       STATE_ID: 'state_id',
     },
   },
+
+  HOMEPAGE: {
+    VIEWS: {
+      LATEST_ADS: 'vw_homepage_latest_ads',
+    },
+  },
 };
 
 export enum Database {
   DATA_SOURCE = 'DATA_SOURCE',
+  UNIQUE_VIOLATION = '23505',
 }
 
 export enum Strategies {
   JWT_REFRESH = 'jwt-refresh',
+  LOCAL = 'local',
+  JWT = 'jwt',
 }
+
+export enum Jwt {
+  INVALID_TOKEN = 'JsonWebTokenError',
+  EXPIRED_TOKEN = 'TokenExpiredError',
+}
+
+export const REFRESH_MATERIALIZED_VIEW = 'REFRESH MATERIALIZED VIEW';
+
+export const ErrorMessages = {
+  USER: {
+    PHONE_NUMBER_ALREADY_EXISTS: 'A user with this phone number already exists',
+    INVALID_CREDENTIALS: 'Invalid credentials',
+    INVALID_REFRESH_TOKEN: 'Invalid refresh token',
+  },
+
+  AUTOMOBILE: {
+    AUTOMOBILE_NOT_FOUND: 'Automobile ad not found',
+  },
+};

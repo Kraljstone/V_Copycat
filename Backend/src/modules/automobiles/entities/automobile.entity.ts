@@ -8,8 +8,8 @@ import {
   JoinColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { CfgCategory } from 'src/modules/categories/entities/category.entity';
-import { Tables } from 'src/utils/constants';
+import { CfgCategory } from '../../categories/entities/category.entity';
+import { Tables } from '../../../utils/constants';
 
 @Entity(Tables.AUTOMOBILE_CATEGORIES.TABLE)
 export class AutomobileCategory {

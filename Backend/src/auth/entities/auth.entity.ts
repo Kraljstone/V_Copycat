@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Exclude, Expose } from 'class-transformer';
-import { Tables } from 'src/utils/constants';
+import { Tables } from '../../utils/constants';
 @Entity(Tables.USERS.TABLE)
 export class User {
   @PrimaryGeneratedColumn({ type: 'int', name: Tables.USERS.COLUMN.ID })
@@ -70,6 +70,10 @@ export class User {
   @Column({ type: 'varchar', length: 255, nullable: true, name: Tables.USERS.COLUMN.REFRESH_TOKEN })
   @Expose()
   refreshToken: string;
+
+  @Column({ type: 'varchar', length: 255, nullable: true, name: Tables.USERS.COLUMN.ACCESS_TOKEN })
+  @Expose()
+  accessToken: string;
 
   @CreateDateColumn({
     type: 'timestamp',
