@@ -1,73 +1,191 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Copycat Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This is the backend service for the Copycat application, built with NestJS and PostgreSQL. The application provides APIs for managing automobile listings, user authentication, and other marketplace features.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Prerequisites
 
-## Description
+- Node.js (v16 or higher)
+- Docker and Docker Compose
+- npm or yarn
+- PostgreSQL (if running locally without Docker)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Project Structure
 
-## Installation
-
-```bash
-$ npm install
+```
+Backend/
+├── src/
+│   ├── modules/           # Feature modules
+│   │   ├── automobiles/   # Automobile listings
+│   │   ├── auth/         # Authentication
+│   │   ├── home/         # Homepage features
+│   │   └── users/        # User management
+│   ├── database/         # Database configuration
+│   ├── typeorm/          # TypeORM entities
+│   └── utils/            # Utility functions and constants
+├── test/                 # Test files
+└── docker/              # Docker configuration
 ```
 
-## Running the app
+## Setup
+
+1. Install dependencies:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Test
+2. Create a `.env` file in the Backend directory with the following content:
+
+```env
+# Database Configuration
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=postgres_user
+DB_PASSWORD=postgres_pass
+DB_DATABASE=copycat_database
+
+# Application Configuration
+PORT=4000
+NODE_ENV=development
+```
+
+## Database Setup
+
+1. Start the PostgreSQL database using Docker:
 
 ```bash
-# unit tests
-$ npm run test
+docker-compose up -d
+```
+
+2. The database will be initialized with the following structure:
+   - `trn_automobile_ads`: Automobile listings
+   - `users`: User accounts
+   - `cfg_automobile_categories`: Vehicle categories
+   - `cfg_cities`: Location data
+   - `trn_user_views`: Ad view tracking
+   - `trn_automobile_ad_images`: Ad images
+   - `trn_sponsored_ads`: Sponsored listings
+
+## Starting the Application
+
+1. Development mode with hot-reload:
+
+```bash
+npm run start:dev
+```
+
+2. Production mode:
+
+```bash
+npm run start:prod
+```
+
+The application will be available at `http://localhost:4000`
+
+## API Documentation
+
+The API documentation is available at `http://localhost:4000/api` when running in development mode.
+
+## Database Management
+
+### Connection Details
+
+- Host: localhost
+- Port: 5432
+- Username: postgres_user
+- Password: postgres_pass
+- Database: copycat_database
+
+### Connect to Database
+
+Using Docker:
+
+```bash
+docker exec -it backend-db-1 psql -U postgres_user -d copycat_database
+```
+
+Using psql directly:
+
+```bash
+psql -h localhost -U postgres_user -d copycat_database
+```
+
+## Development
+
+### Running Tests
+
+```bash
+# Unit tests
+npm run test
 
 # e2e tests
-$ npm run test:e2e
+npm run test:e2e
 
-# test coverage
-$ npm run test:cov
+# Test coverage
+npm run test:cov
 ```
 
-## Support
+### Code Style
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+The project uses ESLint and Prettier for code formatting. Run:
 
-## Stay in touch
+```bash
+npm run lint
+npm run format
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Database Migrations
+
+```bash
+# Generate migration
+npm run typeorm migration:generate
+
+# Run migrations
+npm run typeorm migration:run
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. Database Connection Issues:
+
+   - Verify Docker is running
+   - Check database container status:
+     ```bash
+     docker ps
+     ```
+   - Restart database if needed:
+     ```bash
+     docker-compose down
+     docker-compose up -d
+     ```
+
+2. Port Conflicts:
+
+   - Check if port 5432 is available:
+     ```bash
+     lsof -i :5432
+     ```
+   - Check if port 4000 is available:
+     ```bash
+     lsof -i :4000
+     ```
+
+3. TypeORM View Issues:
+   - Drop existing views if recreating:
+     ```sql
+     DROP VIEW IF EXISTS "automobileLatestAdsView";
+     ```
+   - Verify view column names match entity definitions
+
+## Contributing
+
+1. Create a new branch for your feature
+2. Make your changes
+3. Run tests and linting
+4. Submit a pull request
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+This project is licensed under the MIT License.
