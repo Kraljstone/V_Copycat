@@ -10,7 +10,9 @@ import * as passport from 'passport';
 
 const bootstrap = async () => {
   const logger = new Logger('Bootstrap');
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: ['error', 'warn', 'log', 'verbose', 'debug'],
+  });
   const port = process.env.PORT || 5000;
 
   // Security
